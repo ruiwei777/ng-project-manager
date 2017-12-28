@@ -1,4 +1,4 @@
-<mat-sidenav-container>
+<mat-sidenav-container [ngClass]="{'dark-theme': darkTheme}">
   <mat-sidenav #sidenav mode="push">
     <app-sidebar></app-sidebar>
   </mat-sidenav>
@@ -6,10 +6,10 @@
 
   <mat-sidenav-content class="page-container">
     <header>
-      <app-header (toggleSidenav)="sidenav.toggle()"></app-header>
+      <app-header (toggleSidenav)="sidenav.toggle()" (toggleTheme)="toggleTheme($event)"></app-header>
     </header>
     <main>
-      <button (click)="sidenav.toggle()">toggle</button>
+      <router-outlet></router-outlet>
     </main>
     <footer>
       <app-footer></app-footer>

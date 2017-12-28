@@ -1,12 +1,15 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { RouterModule } from '@angular/router';
 
 import {
   MatButtonModule,
   MatToolbarModule,
   MatIconModule,
   MatInputModule,
-  MatCardModule
+  MatCardModule,
+  MatSlideToggleModule,
+  MatListModule,
 } from '@angular/material';
 
 
@@ -14,18 +17,24 @@ import {
   imports: [
     CommonModule,
     MatButtonModule,
+    MatCardModule,
     MatIconModule,
     MatInputModule,
+    MatListModule,
     MatToolbarModule,
-    MatCardModule
+    MatSlideToggleModule,
+    RouterModule
   ],
   exports: [
     CommonModule,
     MatButtonModule,
+    MatCardModule,
     MatIconModule,
     MatInputModule,
+    MatListModule,
     MatToolbarModule,
-    MatCardModule
+    MatSlideToggleModule,
+    RouterModule
   ],
   declarations: []
 })

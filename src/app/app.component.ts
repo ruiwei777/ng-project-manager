@@ -7,10 +7,12 @@ import { Component, EventEmitter, Output } from '@angular/core';
 })
 export class AppComponent {
   title = 'Project manager of yours';
+  darkTheme = false;
 
   @Output() toggle = new EventEmitter<void>();
 
-  constructor(){
-
+ 
+  toggleTheme(checked: boolean){
+    this.darkTheme = checked;
   }
 }

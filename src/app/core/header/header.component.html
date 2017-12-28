@@ -1,5 +1,9 @@
-<mat-toolbar color="accent">
+<mat-toolbar color="primary">
   <button mat-button (click)="onToggleClick()">
     <mat-icon>menu</mat-icon>
   </button>
+  <a routerLink="/" routerLinkActive="active">Home</a>
+  <a routerLink="/login" routerLinkActive="active">Login</a>
+
+  <mat-slide-toggle class="ml-auto" (change)="onToggleTheme($event.checked)">Dark</mat-slide-toggle>
 </mat-toolbar>

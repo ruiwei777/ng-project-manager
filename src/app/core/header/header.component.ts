@@ -8,6 +8,7 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 export class HeaderComponent implements OnInit {
 
   @Output() toggleSidenav = new EventEmitter<void>();
+  @Output() toggleTheme = new EventEmitter<boolean>();
 
   constructor() { }
 
@@ -18,4 +19,8 @@ export class HeaderComponent implements OnInit {
     this.toggleSidenav.emit();
   }
 
+
+  onToggleTheme(toggled: boolean){
+    this.toggleTheme.emit(toggled);
+  }
 }
