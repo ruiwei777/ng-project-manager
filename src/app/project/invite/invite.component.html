@@ -1,0 +1,20 @@
+<form>
+  <h1 mat-dialog-title>Create a new project</h1>
+  <mat-dialog-content>
+    <mat-form-field class="full-width">
+      <input matInput type="text" placeholder="Member name" [matAutocomplete]="autoMembers">
+    </mat-form-field>
+
+  </mat-dialog-content>
+
+  <mat-dialog-actions>
+    <button mat-raised-button role="button" color="primary" (click)="onSubmit()">Invite</button>
+    <button mat-raised-button role="button" mat-dialog-close>Cancel</button>
+  </mat-dialog-actions>
+</form>
+
+<mat-autocomplete #autoMembers="matAutocomplete" [displayWith]="displayUser">
+  <mat-option *ngFor="let item of items" [value]="item">
+    {{item.name}}
+  </mat-option>
+</mat-autocomplete>

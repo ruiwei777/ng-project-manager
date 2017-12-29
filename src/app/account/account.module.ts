@@ -3,13 +3,14 @@ import { CommonModule } from '@angular/common';
 
 import { SharedModule } from '../shared/shared.module';
 import { LoginComponent } from './login/login.component';
-import { LoginRoutingModule } from './login-routing.module';
+import { AccountRoutingModule } from './account-routing.module';
+import { RegisterComponent } from './register/register.component';
 
 @NgModule({
   imports: [
-    LoginRoutingModule,
+    AccountRoutingModule,
     SharedModule
   ],
-  declarations: [LoginComponent]
+  declarations: [LoginComponent, RegisterComponent]
 })
-export class LoginModule { }
+export class AccountModule { }

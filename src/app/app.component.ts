@@ -1,4 +1,5 @@
 import { Component, EventEmitter, Output } from '@angular/core';
+import { OverlayContainer } from '@angular/cdk/overlay';
 
 @Component({
   selector: 'app-root',
@@ -11,8 +12,12 @@ export class AppComponent {
 
   @Output() toggle = new EventEmitter<void>();
 
+  constructor(private oc: OverlayContainer){
+
+  }
  
   toggleTheme(checked: boolean){
     this.darkTheme = checked;
+    this.oc.getContainerElement().classList.add('dark-theme');
   }
 }

@@ -1,0 +1,35 @@
+<div mat-subheader class="header-container">
+  <h3>{{header}}</h3>
+
+  <div class="fill">
+    <button mat-button>
+      <mat-icon>add_circle_outline</mat-icon>
+      <span>new task</span>
+    </button>
+  </div>
+
+  <div>
+    <button mat-icon-button [matMenuTriggerFor]="menu">
+      <mat-icon>keyboard_arrow_down</mat-icon>
+      <span>new task</span>
+    </button>
+  </div>
+</div>
+
+<mat-menu #menu="matMenu">
+  <button mat-menu-item>
+    <mat-icon>mode_edit</mat-icon>
+    <span>Edit</span>
+  </button>
+
+  <button mat-menu-item>
+    <mat-icon svgIcon="move"></mat-icon>
+    <span>move list</span>
+  </button>
+
+  <button mat-menu-item>
+    <mat-icon>delete_forever</mat-icon>
+    <span>delete list</span>
+  </button>
+
+</mat-menu>

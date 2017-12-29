@@ -2,8 +2,11 @@
   <button mat-button (click)="onToggleClick()">
     <mat-icon>menu</mat-icon>
   </button>
-  <a routerLink="/" routerLinkActive="active">Home</a>
-  <a routerLink="/login" routerLinkActive="active">Login</a>
+  <a mat-button routerLink="/" routerLinkActive="active">Home</a>
+  <a mat-button routerLink="/account/login" routerLinkActive="active">Login</a>
+  <a mat-button routerLink="/account/register" routerLinkActive="active">Register</a>
+  <a mat-button routerLink="/task/home" routerLinkActive="active">Task</a>
+  <a mat-button routerLink="/project/list" routerLinkActive="active">Project</a>
 
   <mat-slide-toggle class="ml-auto" (change)="onToggleTheme($event.checked)">Dark</mat-slide-toggle>
 </mat-toolbar>
