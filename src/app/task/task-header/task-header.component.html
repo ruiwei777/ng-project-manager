@@ -2,16 +2,15 @@
   <h3>{{header}}</h3>
 
   <div class="fill">
-    <button mat-button>
+    <button mat-button type="button" (click)="onNewTaskClick()">
       <mat-icon>add_circle_outline</mat-icon>
-      <span>new task</span>
+      <span>New task</span>
     </button>
   </div>
 
   <div>
-    <button mat-icon-button [matMenuTriggerFor]="menu">
+    <button mat-button [matMenuTriggerFor]="menu">
       <mat-icon>keyboard_arrow_down</mat-icon>
-      <span>new task</span>
     </button>
   </div>
 </div>
@@ -22,12 +21,12 @@
     <span>Edit</span>
   </button>
 
-  <button mat-menu-item>
+  <button mat-menu-item (click)="onMoveAllClick()">
     <mat-icon svgIcon="move"></mat-icon>
     <span>move list</span>
   </button>
 
-  <button mat-menu-item>
+  <button mat-menu-item (click)="onDeleteClick()">
     <mat-icon>delete_forever</mat-icon>
     <span>delete list</span>
   </button>

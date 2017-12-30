@@ -1,0 +1,44 @@
+.container{
+    width:100%;
+    border-radius: 3px;
+    box-shadow: 0 1px 2px rgba(0,0,0,.1);
+}
+
+.bottom-bar{
+    margin-top: 3px;
+    margin-bottom: 2px;
+    width: 100%;
+    font-size: 10px;
+}
+
+.due-date{
+    background-color: #ff4f3e;
+    color: white;
+}
+
+mat-checkbox{
+    order: -1;
+}
+
+.content{
+    width: 100%;
+    padding: 5px;
+    border-radius: 3px;
+}
+
+.alarm{
+    font-size: 18px;
+}
+
+:host{
+    width: 100%;
+}
+
+mat-icon.avatar{
+    width: 64px;
+    height: 64px;
+    margin: 12px;
+    overflow: hidden;
+    order: 3;
+    border-radius: 50%;
+}

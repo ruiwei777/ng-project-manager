@@ -9,12 +9,22 @@ import Project from '../../models/project.model';
 })
 export class ProjectItemComponent implements OnInit {
   @Input() item: Project;
+  @Output() onDelete = new EventEmitter<void>(); 
   @Output() onInvite = new EventEmitter<void>();
+  @Output() onEdit = new EventEmitter<void>();
   
 
   constructor() { }
 
   ngOnInit() {
+  }
+
+  onDeleteClick(){
+    this.onDelete.emit();
+  }
+
+  onEditClick(){
+    this.onEdit.emit();
   }
 
   onInviteClick(){
