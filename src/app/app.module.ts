@@ -15,11 +15,10 @@ import { CoreModule } from './core/core.module';
   ],
   imports: [
     BrowserModule,
-    BrowserAnimationsModule,
     CoreModule,
     MatSidenavModule,
-
-    AppRoutingModule
+    AppRoutingModule,
+    BrowserAnimationsModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
