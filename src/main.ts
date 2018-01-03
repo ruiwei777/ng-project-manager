@@ -6,6 +6,9 @@ import { environment } from './environments/environment';
 
 import { hmrBootstrap } from './hmr';
 
+import 'hammerjs';
+
+
 if (environment.production) {
   enableProdMode();
 }
