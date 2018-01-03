@@ -110,6 +110,7 @@ export class TaskHomeComponent implements OnInit {
   }
 
   launchNewTaskDialog() {
+    console.log("task-home: newTask received.");
     const dialogRef = this.dialog.open(NewTaskComponent, {
       data: {
         title: 'Create task'
@@ -118,6 +119,7 @@ export class TaskHomeComponent implements OnInit {
   }
 
   launchNewTaskListDialog() {
+    console.log("task-home: newTaskList received.");
     const dialogRef = this.dialog.open(NewTaskListComponent, {
       data: {
         title: 'Create task list'
@@ -127,6 +129,7 @@ export class TaskHomeComponent implements OnInit {
   }
 
   launchEditTaskListDialog() {
+    console.log("task-home: editList received");
     const dialogRef = this.dialog.open(NewTaskListComponent, {
       data: {
         title: 'Edit task list'
@@ -136,6 +139,7 @@ export class TaskHomeComponent implements OnInit {
   }
 
   launchCopyTaskDialog() {
+    console.log("task-home: moveAll received");
     const dialogRef = this.dialog.open(CopyTaskComponent, {
       data: {
         lists: this.lists
@@ -153,6 +157,7 @@ export class TaskHomeComponent implements OnInit {
   }
 
   launchDeleteListDialog() {
+    console.log("task-home: deleteList received");
     const dialogRef = this.dialog.open(ConfirmDialogComponent, {
       data: {
         title: 'Delete list',
