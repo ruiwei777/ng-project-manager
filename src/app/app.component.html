@@ -1,6 +1,6 @@
 <mat-sidenav-container [ngClass]="{'dark-theme': darkTheme}">
   <mat-sidenav #sidenav mode="push">
-    <app-sidebar></app-sidebar>
+    <app-sidebar (navClick)="sidenav.toggle()"></app-sidebar>
   </mat-sidenav>
 
 

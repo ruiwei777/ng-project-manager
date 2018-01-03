@@ -2,20 +2,20 @@
   <mat-card class="login-card">
     <h2>Login</h2>
     <mat-card-content>
-      <form>
+      <form [formGroup]="form" (ngSubmit)="onSubmit(form, $event)">
         <mat-form-field class="full-width">
-          <input matInput type="email" placeholder="email">
+          <input matInput type="email" placeholder="email" formControlName="email">
           <mat-hint>required</mat-hint>
           <mat-error>Must be a valid email address</mat-error>
         </mat-form-field>
   
         <mat-form-field class="full-width">
-          <input matInput type="password" placeholder="password">
+          <input matInput type="password" placeholder="password" formControlName="password">
           <mat-hint>required</mat-hint>
           <mat-error>Password is required</mat-error>
         </mat-form-field>
   
-        <button mat-raised-button color="primary">Login</button>
+        <button mat-raised-button color="primary" type="submit" [disabled]="!form.valid">Login</button>
       </form>
     </mat-card-content>
   

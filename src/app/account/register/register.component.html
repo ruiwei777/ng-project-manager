@@ -2,49 +2,50 @@
   <mat-card class="login-card">
     <h2>Register</h2>
     <mat-card-content>
-      <form>
+      <form [formGroup]="form" (ngSubmit)="onSubmit(form, $event)">
         <mat-form-field class="full-width">
-          <input matInput type="email" placeholder="Email">
-          <mat-hint>your email address</mat-hint>
+          <input matInput type="email" placeholder="Email" formControlName="email">
           <mat-error>must be a valid email address</mat-error>
         </mat-form-field>
 
         <mat-form-field class="full-width">
-          <input matInput type="text" placeholder="Username">
-          <mat-hint>account username</mat-hint>
+          <input matInput type="text" placeholder="Username" formControlName="username">
           <mat-error>required</mat-error>
         </mat-form-field>
 
         <mat-form-field class="full-width">
-          <input matInput type="text" placeholder="First name">
-          <mat-hint>your first name</mat-hint>
+          <input matInput type="text" placeholder="First name" formControlName="first_name">
           <mat-error>required</mat-error>
         </mat-form-field>
 
         <mat-form-field class="full-width">
-          <input matInput type="text" placeholder="Last name">
-          <mat-hint>your last name</mat-hint>
+          <input matInput type="text" placeholder="Last name" formControlName="last_name">
           <mat-error>required</mat-error>
         </mat-form-field>
   
         <mat-form-field class="full-width">
-          <input matInput type="password" placeholder="Password">
-          <mat-hint>password</mat-hint>
+          <input matInput type="password" placeholder="Password" formControlName="password">
           <mat-error>required</mat-error>
         </mat-form-field>
 
         <mat-form-field class="full-width">
-          <input matInput type="password" placeholder="Confirm password">
+          <input matInput type="password" placeholder="Confirm password" formControlName="confirm_password">
           <mat-error>password not match</mat-error>
         </mat-form-field>
 
-        <mat-grid-list cols="8">
+        <!-- <mat-grid-list cols="8">
           <mat-grid-tile *ngFor="let item of items">
             <mat-icon  class="avatar" [svgIcon]="item"></mat-icon>
           </mat-grid-tile>
-        </mat-grid-list>
+        </mat-grid-list> -->
+        <app-image-list-select 
+        [useSvgIcon]="true"
+        [title]="'Choose avatar:'"
+        [items]="items"
+        formControlName="avatar"
+        ></app-image-list-select>
   
-        <button mat-raised-button color="primary">Submit</button>
+        <button mat-raised-button color="primary" type="submit">Submit</button>
       </form>
     </mat-card-content>
   
