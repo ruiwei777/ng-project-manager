@@ -30,4 +30,8 @@ export class NewTaskComponent implements OnInit {
     this.title = this.data.title || 'Please provided a title through data';
   }
 
+  onSubmit(){
+    
+  }
+
 }
