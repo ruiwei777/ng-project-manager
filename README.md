@@ -2,13 +2,15 @@
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.6.2.
 
-## Development server
+## Hot Module Reloading Development Mode
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+`npm run hmr`
 
-## Code scaffolding
-
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+## Deploy to Github Pages
+1. `npm install angular-cli-ghpages`
+2. `ng build --prod --base-href "https://USERNAME.github.io/REPOSITORY_NAME/"`
+3. `ngh` # this will create a remote branch `gh-pages` on Github
+4. Click into the repository -> settings -> Github Pages set to `gh-pages` branch
 
 ## Build
 
