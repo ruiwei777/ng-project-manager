@@ -5,7 +5,8 @@ import { environment } from '../../environments/environment'
 
 
 export const loadSvgResources = (iconRegistry: MatIconRegistry, sanitizer: DomSanitizer) => {
-    const imgDir = '../../assets/img';
+    // const imgDir = '../../assets/img';
+    const imgDir = `${environment.publicPath}/assets/img`;
     const daysDir = `${imgDir}/days`;
     const sidebarDir = `${imgDir}/sidebar`;
     const avatarDir = `${imgDir}/avatar`;
