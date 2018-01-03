@@ -1,6 +1,8 @@
 import { DomSanitizer } from '@angular/platform-browser';
 import { MatIconRegistry } from '@angular/material';
 
+import { environment } from '../../environments/environment'
+
 
 export const loadSvgResources = (iconRegistry: MatIconRegistry, sanitizer: DomSanitizer) => {
     const imgDir = '../../assets/img';

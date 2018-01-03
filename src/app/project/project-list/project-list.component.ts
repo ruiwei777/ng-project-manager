@@ -10,6 +10,8 @@ import { ConfirmDialogComponent } from '../../shared/confirm-dialog/confirm-dial
 import { slideToRight } from '../../animations/route.animation';
 import { listAnimation } from '../../animations/list.animation';
 
+import { environment } from '../../../environments/environment'
+
 @Component({
   selector: 'app-project-list',
   templateUrl: './project-list.component.html',
@@ -23,19 +25,19 @@ export class ProjectListComponent implements OnInit {
       id: 1,
       name: 'name 1',
       desc: 'desc 1',
-      coverImg: '/assets/img/covers/1.jpg'
+      coverImg: `${environment.publicPath}/assets/img/covers/1.jpg`
     },
     {
       id: 2,
       name: 'name 2',
       desc: 'desc 2',
-      coverImg: '/assets/img/covers/2.jpg'
+      coverImg: `${environment.publicPath}/assets/img/covers/2.jpg`
     },
     {
       id: 3,
       name: 'name 3',
       desc: 'desc 3',
-      coverImg: '/assets/img/covers/3.jpg'
+      coverImg: `${environment.publicPath}/assets/img/covers/3.jpg`
     }
   ];
 
@@ -57,7 +59,7 @@ export class ProjectListComponent implements OnInit {
         id: 4,
         name: 'name 4',
         desc: 'desc 4',
-        coverImg: '/assets/img/covers/3.jpg'
+        coverImg: `${environment.publicPath}/assets/img/covers/3.jpg`
       })
     });
   }

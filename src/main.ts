@@ -6,6 +6,9 @@ import { environment } from './environments/environment';
 
 import { hmrBootstrap } from './hmr';
 
+declare let __webpack_public_path__: any;
+__webpack_public_path__ = "https://ruiwei777.github.io/ng-project-manager/";
+
 if (environment.production) {
   enableProdMode();
 }
