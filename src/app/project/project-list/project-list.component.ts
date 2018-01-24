@@ -1,7 +1,8 @@
-import { Component, OnInit, HostBinding } from '@angular/core';
+import { Component, OnInit, HostBinding, OnDestroy } from '@angular/core';
 import { MatDialog } from '@angular/material';
 
-import Project from '../../models/project.model';
+import { Project } from '../../domain/project.model';
+import { ProjectService } from '../../service/project.service';
 
 import { NewProjectComponent } from '../new-project/new-project.component';
 import { InviteComponent } from '../invite/invite.component';
@@ -9,8 +10,16 @@ import { ConfirmDialogComponent } from '../../shared/confirm-dialog/confirm-dial
 
 import { slideToRight } from '../../animations/route.animation';
 import { listAnimation } from '../../animations/list.animation';
+import { Subscription } from 'rxjs/Subscription';
+import * as fromRoot from '../../reducers';
+import * as actions from '../../actions/project.action';
 
 import { environment } from '../../../environments/environment'
+
+import * as _ from 'lodash';
+import { Store } from '@ngrx/store';
+import { Observable } from 'rxjs/Observable';
+import { User } from '../../domain/index';
 
 @Component({
   selector: 'app-project-list',
@@ -18,82 +27,94 @@ import { environment } from '../../../environments/environment'
   styleUrls: ['./project-list.component.scss'],
   animations: [slideToRight, listAnimation]
 })
-export class ProjectListComponent implements OnInit {
+export class ProjectListComponent implements OnInit, OnDestroy {
 
-  projects: Project[] = [
-    {
-      id: 1,
-      name: 'name 1',
-      desc: 'desc 1',
-      coverImg: `${environment.publicPath}/assets/img/covers/1.jpg`
-    },
-    {
-      id: 2,
-      name: 'name 2',
-      desc: 'desc 2',
-      coverImg: `${environment.publicPath}/assets/img/covers/2.jpg`
-    },
-    {
-      id: 3,
-      name: 'name 3',
-      desc: 'desc 3',
-      coverImg: `${environment.publicPath}/assets/img/covers/3.jpg`
-    }
-  ];
+  projects$: Observable<Project[]>;
+  listAnim$: Observable<number>;
 
   @HostBinding('@routeAnimation') state;
 
-  constructor(private dialog: MatDialog) { }
+  constructor(
+    private dialog: MatDialog,
+    private service$: ProjectService,
+    private store$: Store<fromRoot.State>
+  ) {
+    this.store$.dispatch(new actions.Load(null));
+    this.projects$ = this.store$.select(fromRoot.getProjects);
+    this.listAnim$ = this.projects$.map(p => p.length);
+  }
 
   ngOnInit() {
   }
 
-  openNewProjectDialog(): void {
-    const dialogRef = this.dialog.open(NewProjectComponent, {
-      width: '500px',
-      data: { name: 'hi', email: 'email', title: 'Create Project' }
-    });
-
-    dialogRef.afterClosed().subscribe(result => {
-      this.projects.push({
-        id: 4,
-        name: 'name 4',
-        desc: 'desc 4',
-        coverImg: `${environment.publicPath}/assets/img/covers/3.jpg`
-      })
-    });
+  ngOnDestroy() {
   }
 
-  launchDeleteDialog(): void {
+  openNewProjectDialog(): void {
+    const selectedImg = `${environment.publicPath}/assets/img/covers/${Math.floor(Math.random() * 40)}_tn.jpg`;
+    const dialogRef = this.dialog.open(NewProjectComponent, {
+      data: { thumbnails: this.getThumbnails(), img: selectedImg }
+    });
+
+    dialogRef.afterClosed()
+      .take(1)
+      .filter(n => n)
+      .map(val => ({ ...val, coverImg: this.buildImgSrc(val.coverImg) }))
+      .subscribe(project => this.store$.dispatch(new actions.Add(project)));
+  }
+
+  launchDeleteDialog(project: Project): void {
     const dialogRef = this.dialog.open(ConfirmDialogComponent, {
       data: {
         title: 'Delete project',
         content: 'Are you sure to delete the project?'
       }
     });
-    dialogRef.afterClosed().subscribe(result => {
-      this.projects.splice(this.projects.length-1);
-    })
+    dialogRef.afterClosed().take(1)
+      .filter(n => n)
+      .subscribe(() => {
+        this.store$.dispatch(new actions.Delete(project));
+      });
   }
 
-  launchInviteDialog(): void {
-    const dialogRef = this.dialog.open(InviteComponent, {
-      width: '500px',
-      data: {
-        title: 'Create project'
-      }
-    });
+  launchInviteDialog(project: Project): void {
+    let users: User[] = [];
+    this.store$.select(fromRoot.getProjectUsers(project.id))
+      .take(1)
+      .subscribe(members => users = members);
 
-    dialogRef.afterClosed().subscribe(result => {
-      console.log(`${result}`);
-    });
+    this.dialog.open(InviteComponent, { data: { members: users } })
+      .afterClosed()
+      .take(1)
+      .filter(n => n)
+      .subscribe(data => this.store$.dispatch(new actions.Invite({ projectId: project.id, members: data })))
+
   }
 
-  launchUpdateDialog(): void {
+  launchUpdateDialog(project: Project): void {
     const dialogRef = this.dialog.open(NewProjectComponent, {
-      data: {
-        title: 'Edit project'
-      }
+      data: { thumbnails: this.getThumbnails(), project }
     });
+
+    dialogRef.afterClosed()
+      .take(1)
+      .filter(n => n)
+      .map(val => ({ ...val, id: project.id, coverImg: this.buildImgSrc(val.coverImg) }))
+      .subscribe(project => {
+        this.store$.dispatch(new actions.Update(project));
+      });
+  }
+
+  selectProject(project: Project) {
+    this.store$.dispatch(new actions.Select(project));
+  }
+
+  private getThumbnails() {
+    return _.range(0, 40)
+      .map(i => `${environment.publicPath}/assets/img/covers/${i}_tn.jpg`);
+  }
+
+  private buildImgSrc(img: string): string {
+    return img.indexOf('_') > -1 ? img.split('_')[0] + '.jpg' : img;
   }
 }

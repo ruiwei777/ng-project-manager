@@ -4,10 +4,10 @@ import { RouterModule, Routes } from '@angular/router';
 import { AppComponent } from './app.component';
 
 const routes: Routes = [
-    { path: '', redirectTo: 'project/list', pathMatch: 'full' },
+    { path: '', redirectTo: 'account/login', pathMatch: 'full' },
     { path: 'account', loadChildren: 'app/account/account.module#AccountModule' },
-    { path: 'project', loadChildren: 'app/project/project.module#ProjectModule' },
-    { path: 'task', loadChildren: 'app/task/task.module#TaskModule' },
+    { path: 'projects', loadChildren: 'app/project/project.module#ProjectModule' },
+    { path: 'tasklists', loadChildren: 'app/task/task.module#TaskModule' },
     // { path: '**', component: PageNotFoundComponent },
 ];
 

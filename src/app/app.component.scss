@@ -1,9 +1,23 @@
-.page-container{
+mat-sidenav {
+    width: 300px;
+    max-width: 100%;
+}
+
+.page-container {
     display: grid;
     grid-template-rows: auto 1fr auto;
     min-height: 100vh;
 
-    .dark-theme &{
+    .dark-theme & {
         background-color: #303030;
+    }
+
+    main {
+        position: relative;
+        overflow: hidden;
+    }
+
+    footer {
+        max-width: 100%;
     }
 }

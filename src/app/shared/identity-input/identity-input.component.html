@@ -1,0 +1,13 @@
+<div>
+  <mat-select placeholder="License type" (change)="onIdTypeChange($event.value)" [(ngModel)]="identity.identityType">
+    <mat-option *ngFor="let type of identityTypes" [value]="type.value" >
+      {{type.label}}
+    </mat-option>
+  </mat-select>
+</div>
+<div class="id-input">
+  <mat-input-container class="full-width">
+    <input matInput type="text" placeholder="License no." (change)="onIdNoChange($event.target.value)" [(ngModel)]="identity.identityNo">
+    <mat-error>Invalid license no.</mat-error>
+  </mat-input-container>
+</div>

@@ -1,8 +1,5 @@
-.mat-subheader{
-    padding-bottom: 0;
-    padding-top:24px;
-}
-
-.mat-list .mat-subheader{
-    height: auto;
+/*Override the default matListAvatar size, it was too large(40)*/
+.mat-list .mat-list-item .mat-list-avatar{
+  width: 25px;
+  height: 25px;
 }

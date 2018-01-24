@@ -1,19 +1,27 @@
+.header{
+    display: flex;
+    align-items: flex-start;
+    color: rgba(0, 0, 0, 0.6);
+}
+
 mat-icon.avatar {
     overflow: hidden;
-    width: 64px;
-    height: 64px;
+    width: 60px;
+    height: 60px;
     border-radius: 50%;
     margin: 12px;
 }
 
 .scroll-container {
     overflow-y: scroll;
-    height: 200px;
+    height: 250px;
+    width: 350px;
 }
 
 .image-container {
     position: relative;
     display: inline-block;
+    cursor: pointer;
 }
 
 .image-container img {
@@ -51,6 +59,3 @@ mat-icon.avatar {
     color: #FFF;
 }
 
-.cover {
-    width: 150px;
-}

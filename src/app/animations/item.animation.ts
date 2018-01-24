@@ -1,8 +1,7 @@
 import { trigger, state, transition, style, animate } from '@angular/animations';
 
 export const itemAnimation = trigger('itemAnimation', [
-  state('in', style({'border-left-width': '3px'})),
-  state('out', style({'border-left-width': '5px'})),
-  transition('out => hover', animate('500ms ease-in')),
-  transition('hover => out', animate('500ms ease-out'))
+  state('normal', style({'border-width': '3px'})),
+  state('hover', style({'border-width': '8px'})),
+  transition('* => *', animate('0.2s ease')),
 ]);

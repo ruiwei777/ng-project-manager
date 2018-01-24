@@ -14,6 +14,7 @@ export class ProjectItemComponent implements OnInit {
   @Output() onDelete = new EventEmitter<void>();
   @Output() onInvite = new EventEmitter<void>();
   @Output() onEdit = new EventEmitter<void>();
+  @Output() onSelected = new EventEmitter<void>();
 
   @HostBinding('@cardAnimation') cardState = 'out';
 
@@ -33,16 +34,26 @@ export class ProjectItemComponent implements OnInit {
     this.cardState = 'out';
   }
 
-  onDeleteClick() {
+  onDeleteClick(e: Event) {
+    e.stopPropagation();
+    e.preventDefault();
     this.onDelete.emit();
   }
 
-  onEditClick() {
+  onEditClick(e: Event) {
+    e.stopPropagation();
+    e.preventDefault();
     this.onEdit.emit();
   }
 
-  onInviteClick() {
+  onInviteClick(e: Event) {
+    e.stopPropagation();
+    e.preventDefault();
     this.onInvite.emit();
+  }
+
+  onClick(){
+    this.onSelected.emit();
   }
 
 }

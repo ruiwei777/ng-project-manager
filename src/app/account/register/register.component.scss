@@ -1,7 +1,43 @@
+.page-container{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+}
+
 .avatar{
     width: 64px;
     height: 64px;
     margin: 5px;
     border-radius: 50%;
     overflow: hidden;
+}
+
+mat-form-field{
+    display: block;
+}
+
+.image-list-select-container{
+    margin-left: 1em;
+    padding: 1em;
+}
+
+.action-area{
+    margin-top: .5rem;
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    margin-bottom: .5rem;
+}
+
+.btn-register{
+    margin-left: .5rem;
+}
+
+.has-account{
+    margin-top: .5rem;
+    font-size: 12px;
+    text-align: right;
+    color: rgba(0,0,0,.87);
+    opacity: .7;
 }

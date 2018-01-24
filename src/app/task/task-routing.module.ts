@@ -4,9 +4,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { TaskHomeComponent } from './task-home/task-home.component';
 
 const routes: Routes = [
-    { path: '', redirectTo: 'home', pathMatch: 'full' },
-    { path: 'home', component: TaskHomeComponent },
-    // { path: '', redirectTo: '', pathMatch: 'full' },
+    { path: ':id', component: TaskHomeComponent },
 ];
 
 @NgModule({

@@ -2,6 +2,8 @@ import { Component, Inject, OnInit } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material';
 import { ProjectListComponent } from '../project-list/project-list.component';
 
+import { User } from '../../domain';
+
 @Component({
   selector: 'app-invite',
   templateUrl: './invite.component.html',
@@ -9,35 +11,24 @@ import { ProjectListComponent } from '../project-list/project-list.component';
 })
 export class InviteComponent implements OnInit {
 
-
-  items = [
-    {
-      id: 1,
-      name: "name 1"
-    },
-    {
-      id: 2,
-      name: "name 2"
-    },
-    {
-      id: 3,
-      name: "name 3"
-    },
-  ]
-
+  members: User[];
   constructor(
     @Inject(MAT_DIALOG_DATA) public data: any,
     private dialogRef: MatDialogRef<ProjectListComponent>
   ) { }
 
   ngOnInit() {
+    this.members = [...this.data.members];
   }
 
-  onSubmit() {
+  onSubmit({value, valid}, e:Event) {
+    e.preventDefault();
+    if(!valid){
+      return;
+    }
 
+    this.dialogRef.close(this.members);
   }
 
-  displayUser(user: { id: number, name: string }): string {
-    return user ? user.name : null;
-  }
+
 }

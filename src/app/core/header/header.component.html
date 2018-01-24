@@ -1,12 +1,13 @@
 <mat-toolbar color="primary">
-  <button mat-icon-button (click)="onToggleClick()">
+  <button mat-icon-button (click)="onToggleClick()" *ngIf="(auth$ | async).token">
     <mat-icon>menu</mat-icon>
   </button>
-  <a mat-button routerLink="/" routerLinkActive="active">Home</a>
-  <a mat-button routerLink="/account/login" routerLinkActive="active">Login</a>
-  <a mat-button routerLink="/account/register" routerLinkActive="active">Register</a>
-  <a mat-button routerLink="/task/home" routerLinkActive="active">Task</a>
-  <a mat-button routerLink="/project/list" routerLinkActive="active">Project</a>
+  <a mat-button routerLink="/" routerLinkActive="active" aria-label="Navigate to home page">
+    <mat-icon aria-hidden="true">home</mat-icon>
+  </a>
+  <a mat-button routerLink="/account/login" routerLinkActive="active" *ngIf="!(auth$ | async).token">Login</a>
+  <a mat-button routerLink="/account/register" routerLinkActive="active" *ngIf="!(auth$ | async).token">Register</a>
 
-  <mat-slide-toggle class="ml-auto" (change)="onToggleTheme($event.checked)">Dark</mat-slide-toggle>
+  <mat-slide-toggle class="ml-auto" (change)="onToggleTheme($event.checked)" color="primary">Dark</mat-slide-toggle>
+  <span><a mat-button *ngIf="(auth$ | async).token" (click)="logout()">Logout</a></span>
 </mat-toolbar>

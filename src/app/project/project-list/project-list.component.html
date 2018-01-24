@@ -1,7 +1,7 @@
-<div class="project-container" [@listAnimation]="projects.length">
+<div class="project-container" [@listAnimation]="listAnim$ | async">
 
-  <app-project-item *ngFor="let project of projects" [item]="project" (onInvite)="launchInviteDialog()" (onEdit)="launchUpdateDialog()"
-    (onDelete)="launchDeleteDialog()">
+  <app-project-item *ngFor="let project of (projects$ | async)" [item]="project" (onInvite)="launchInviteDialog(project)" (onEdit)="launchUpdateDialog(project)"
+    (onDelete)="launchDeleteDialog(project)" (onSelected)="selectProject(project)">
 
   </app-project-item>
 

@@ -10,9 +10,10 @@ $my-app-theme: mat-light-theme($my-app-primary, $my-app-accent, $my-app-warn);
 
 @include angular-material-theme($my-app-theme);
 
-$my-dark-primary: mat-palette($mat-purple);
-$my-dark-accent: mat-palette($mat-indigo, A200, A100, A400);
-$my-dark-warn: mat-palette($mat-deep-orange);
+
+$my-dark-primary: mat-palette($mat-deep-purple);
+$my-dark-accent: mat-palette($mat-purple, 700, 500, 900); /*default, lighter, darker*/
+$my-dark-warn: mat-palette($mat-red); /*defaults to red, optional*/
 
 $my-dark-theme: mat-dark-theme($my-dark-primary, $my-dark-accent, $my-dark-warn);
 

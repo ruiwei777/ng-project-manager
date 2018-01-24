@@ -1,58 +1,67 @@
-<div class="full-height d-center">
-  <mat-card class="login-card">
-    <h2>Register</h2>
-    <mat-card-content>
-      <form [formGroup]="form" (ngSubmit)="onSubmit(form, $event)">
-        <mat-form-field class="full-width">
-          <input matInput type="email" placeholder="Email" formControlName="email">
-          <mat-error>must be a valid email address</mat-error>
+<form class="page-container" [formGroup]="form" (ngSubmit)="onSubmit(form, $event)">
+  <mat-card class="card">
+    <mat-tab-group [dynamicHeight]="true" [selectedIndex]="selectedTab" (selectChange)="onTabChange($event.index)">
+      <mat-tab label="Account Information">
+        <div class="d-flex">
+          <div>
+            <mat-form-field>
+              <input matInput placeholder="Email" formControlName="email" required>
+            </mat-form-field>
+            <mat-form-field>
+              <input matInput type="text" placeholder="Username" formControlName="username" required>
+            </mat-form-field>
+
+            <mat-form-field>
+              <input matInput type="password" placeholder="Password" formControlName="password" required>
+            </mat-form-field>
+
+            <mat-form-field>
+              <input matInput type="password" placeholder="Confirm password" formControlName="confirm_password" required>
+            </mat-form-field>
+          </div>
+
+          <div class="image-list-select-container">
+            <app-image-list-select [useSvgIcon]="true" [cols]="5" [title]="'Choose an avatar:'" [items]="avatars$ | async" formControlName="avatar"
+              required>
+            </app-image-list-select>
+          </div>
+        </div>
+
+
+
+        <div class="action-area">
+          <button mat-raised-button type="button" (click)="nextTab()">Next</button>
+          <div class="has-account">Already have an account?
+            <a routerLink="/login">login</a>
+          </div>
+        </div>
+
+      </mat-tab>
+      <mat-tab label="Personal Information">
+        <mat-form-field>
+          <input matInput type="text" placeholder="First name" formControlName="first_name" required>
+        </mat-form-field>
+        <mat-form-field>
+          <input matInput type="text" placeholder="Last name" formControlName="last_name" required>
         </mat-form-field>
 
-        <mat-form-field class="full-width">
-          <input matInput type="text" placeholder="Username" formControlName="username">
-          <mat-error>required</mat-error>
+        <mat-form-field>
+          <input matInput [matDatepicker]="datepicker" placeholder="Date of birth" formControlName="dateOfBirth">
+          <mat-hint align="end">optional</mat-hint>
+          <mat-datepicker-toggle matSuffix [for]="datepicker"></mat-datepicker-toggle>
+          <mat-datepicker #datepicker startView="year" [startAt]="startDate"></mat-datepicker>
         </mat-form-field>
 
-        <mat-form-field class="full-width">
-          <input matInput type="text" placeholder="First name" formControlName="first_name">
-          <mat-error>required</mat-error>
-        </mat-form-field>
+        <div class="full-width">
+          <button mat-raised-button type="button" (click)="prevTab()">Last step</button>
+          <button mat-raised-button type="submit" color="primary" [disabled]="!form.valid" class="btn-register">Register</button>
+          <div class="has-account">Already have an account？
+            <a routerLink="/login">Login</a>
+          </div>
 
-        <mat-form-field class="full-width">
-          <input matInput type="text" placeholder="Last name" formControlName="last_name">
-          <mat-error>required</mat-error>
-        </mat-form-field>
-  
-        <mat-form-field class="full-width">
-          <input matInput type="password" placeholder="Password" formControlName="password">
-          <mat-error>required</mat-error>
-        </mat-form-field>
-
-        <mat-form-field class="full-width">
-          <input matInput type="password" placeholder="Confirm password" formControlName="confirm_password">
-          <mat-error>password not match</mat-error>
-        </mat-form-field>
-
-        <!-- <mat-grid-list cols="8">
-          <mat-grid-tile *ngFor="let item of items">
-            <mat-icon  class="avatar" [svgIcon]="item"></mat-icon>
-          </mat-grid-tile>
-        </mat-grid-list> -->
-        <app-image-list-select 
-        [useSvgIcon]="true"
-        [title]="'Choose avatar:'"
-        [items]="items"
-        formControlName="avatar"
-        ></app-image-list-select>
-  
-        <button mat-raised-button color="primary" type="submit">Submit</button>
-      </form>
-    </mat-card-content>
-  
-    <mat-card-actions>
-      <p>Already have an account, 
-        <a routerLink="/account/login">login</a>
-      </p>
-    </mat-card-actions>
+          <!-- <span>Forget <a routerLink="/forgot">password?</a></span> -->
+        </div>
+      </mat-tab>
+    </mat-tab-group>
   </mat-card>
-</div>
+</form>

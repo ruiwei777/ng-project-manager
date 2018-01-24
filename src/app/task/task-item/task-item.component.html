@@ -3,7 +3,7 @@
     'priority-normal': item.priority === 3,
     'priority-important': item.priority === 2,
     'priority-emergency': item.priority === 1,
-    completed: item.completed}" [@itemAnimation]="widerPriority">
+    completed: item.completed}" [@itemAnimation]="state">
   <mat-checkbox [checked]="item.completed" (click)="onCheckboxClick($event)"></mat-checkbox>
 
   <div mat-line class="content">
@@ -15,5 +15,5 @@
     <mat-icon *ngIf="item.reminder" class="alarm">alarm</mat-icon>
   </div>
 
-  <mat-icon [svgIcon]="item.owner.avatar" mat-list-avatar class="avatar"></mat-icon>
+  <mat-icon [svgIcon]="(owner$ | async).avatar" mat-list-avatar class="avatar"></mat-icon>
 </mat-list-item>
