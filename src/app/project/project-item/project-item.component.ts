@@ -24,14 +24,20 @@ export class ProjectItemComponent implements OnInit {
   ngOnInit() {
   }
 
-  @HostListener('mouseenter', ['$event.target'])
-  onMouseEnter(target){
+  @HostListener('mouseenter', ['$event'])
+  onMouseEnter(e: Event){
+    e.preventDefault();
+    e.stopPropagation();
     this.cardState = 'hover';
+    // console.log('Enter: ', this.cardState);
   }
 
-  @HostListener('mouseleave', ['$event.target'])
-  onMouseLeave(target){
+  @HostListener('mouseleave', ['$event'])
+  onMouseLeave(e: Event){
+    e.preventDefault();
+    e.stopPropagation();
     this.cardState = 'out';
+    // console.log('Leave: ', this.cardState);
   }
 
   onDeleteClick(e: Event) {

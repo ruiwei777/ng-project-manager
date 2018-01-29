@@ -5,8 +5,11 @@ import { Store } from '@ngrx/store';
 import * as fromRoot from '../reducers';
 import * as RouterActions from '../actions/router.action';
 
+/**
+ * If a logged-in user navigates to /account/login, redirect to /projects
+ */
 @Injectable()
-export class AuthGuardService implements CanActivate {
+export class LoginGuardService implements CanActivate {
 
     constructor(private store$: Store<fromRoot.State>) { }
 
@@ -17,11 +20,11 @@ export class AuthGuardService implements CanActivate {
         return this.store$.select(fromRoot.getAuthState)
             .map(auth => {
                 const result = auth.token !== null && auth.token !== undefined;
-                if (!result) {
-                    this.store$.dispatch(new RouterActions.Go({ path: ['/account/login'] }))
+                if (result) {
+                    this.store$.dispatch(new RouterActions.Go({ path: ['/projects'] }))
                 }
-                return result;
+                return true;
             })
-            .defaultIfEmpty(false)
+            .defaultIfEmpty(true)
     }
 }

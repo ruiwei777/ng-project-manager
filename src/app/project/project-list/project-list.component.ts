@@ -53,7 +53,8 @@ export class ProjectListComponent implements OnInit, OnDestroy {
   openNewProjectDialog(): void {
     const selectedImg = `${environment.publicPath}/assets/img/covers/${Math.floor(Math.random() * 40)}_tn.jpg`;
     const dialogRef = this.dialog.open(NewProjectComponent, {
-      data: { thumbnails: this.getThumbnails(), img: selectedImg }
+      data: { thumbnails: this.getThumbnails(), img: selectedImg },
+      width: '500px'
     });
 
     dialogRef.afterClosed()
@@ -83,7 +84,10 @@ export class ProjectListComponent implements OnInit, OnDestroy {
       .take(1)
       .subscribe(members => users = members);
 
-    this.dialog.open(InviteComponent, { data: { members: users } })
+    this.dialog.open(InviteComponent, {
+      data: { members: users },
+      width: '500px'
+    })
       .afterClosed()
       .take(1)
       .filter(n => n)

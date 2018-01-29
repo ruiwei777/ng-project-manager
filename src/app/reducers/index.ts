@@ -18,9 +18,12 @@ import { Auth } from '../domain';
 import * as fromQuote from './quote.reducer';
 import * as fromAuth from './auth.reducer';
 import * as fromProject from './project.reducer';
+import * as fromRouter from './router.reducer';
 import * as fromTaskList from './task-list.reducer';
 import * as fromTask from './task.reducer';
 import * as fromUser from './user.reducer';
+
+import * as authActions from '../actions/auth.action';
 
 export interface RouterStateUrl {
   url: string;
@@ -36,6 +39,22 @@ export interface State {
   taskLists: fromTaskList.State,
   tasks: fromTask.State,
   users: fromUser.State
+};
+
+const routerInitialState = {
+  navigationId: 1,
+  state: {
+    url: '/account/login'
+  }
+}
+
+const modules = {
+  auth: { initialState: fromAuth.initialState },
+  projects: { initialState: fromProject.initialState },
+  quote: { initialState: fromQuote.initialState },
+  tasks: { initialState: fromTask.initialState },
+  taskLists: { initialState: fromTaskList.initialState },
+  users: { initialState: fromUser.initialState }
 };
 
 export class CustomSerializer implements RouterStateSerializer<RouterStateUrl> {
@@ -64,7 +83,34 @@ export const reducers: ActionReducerMap<State> = {
   tasks: fromTask.reducer,
   users: fromUser.reducer
 }
-export const metaReducers: MetaReducer<State>[] = !environment.production ? [storeFreeze] : [];
+
+/**
+ * @angularclass/hmr with @ngrx/platform
+ * @param reducer 
+ */
+export function stateSetter(reducer: ActionReducer<any>): ActionReducer<any> {
+  return function (state: any, action: any) {
+    if (action.type === 'SET_ROOT_STATE') {
+      return action.payload;
+    }
+    return reducer(state, action);
+  };
+}
+
+const resetOnLogout = (reducer: Function) => {
+  return function (state, action) {
+    let newState;
+    if (action.type === authActions.ActionTypes.LOGOUT) {
+      newState = Object.assign({}, state);
+      Object.keys(modules).forEach((key) => {
+        newState[key] = modules[key]['initialState'];
+      });
+    }
+    return reducer(newState || state, action);
+  };
+};
+
+export const metaReducers: MetaReducer<State>[] = !environment.production ? [storeFreeze, stateSetter, resetOnLogout] : [resetOnLogout];
 
 export const getQuoteState = (state: State) => state.quote;
 export const getAuthState = (state: State) => state.auth;
@@ -72,7 +118,9 @@ export const getProjectState = (state: State) => state.projects;
 export const getTaskListState = (state: State) => state.taskLists;
 export const getTaskState = (state: State) => state.tasks;
 export const getUserState = (state: State) => state.users;
+export const getRouterState = (state: State) => state.router;
 
+export const getNavigationId = createSelector(getRouterState, fromRouter.getNavigationId);
 export const getQuote = createSelector(getQuoteState, fromQuote.getQuote);
 export const getProjects = createSelector(getProjectState, fromProject.getAll);
 export const getTaskLists = createSelector(getTaskListState, fromTaskList.getSelected);
@@ -100,20 +148,5 @@ export const getTasksByLists = createSelector(getTaskLists, getTasksWithOwners, 
 })
 
 export const getProjectUsers = (projectId: string) => createSelector(getProjectState, getUserEntities, (state, entities) => {
-  return state.entities[projectId].members.map(id => entities[id] )
+  return state.entities[projectId].members.map(id => entities[id])
 })
-@NgModule({
-  imports: [
-    StoreModule.forRoot(reducers, { metaReducers }),
-    StoreRouterConnectingModule.forRoot({
-      stateKey: 'router'
-    }),
-    StoreDevtoolsModule.instrument({
-      maxAge: 25
-    }),
-  ],
-  providers: [
-    { provide: RouterStateSerializer, useClass: CustomSerializer }
-  ]
-})
-export class AppStoreModule { }

@@ -6,6 +6,7 @@ import { TaskListService } from './task-list.service';
 import { UserService } from './user.service';
 import { AuthService } from './auth.service';
 import { AuthGuardService } from './auth-guard.service';
+import { LoginGuardService } from './login-guard.service';
 
 export {
   QuoteService,
@@ -18,6 +19,7 @@ export class ServicesModule {
       ngModule: ServicesModule,
       providers: [
         AuthGuardService,
+        LoginGuardService,
         AuthService,
         ProjectService,
         QuoteService,

@@ -6,11 +6,13 @@ import { NewProjectComponent } from './new-project/new-project.component';
 import { ProjectItemComponent } from './project-item/project-item.component';
 import { InviteComponent } from './invite/invite.component';
 import { SharedModule } from '../shared/shared.module';
+import { CoreModule } from '../core/core.module';
 
 @NgModule({
   imports: [
     ProjectRoutingModule,
-    SharedModule
+    SharedModule,
+    // CoreModule
   ],
   declarations: [
     ProjectListComponent,

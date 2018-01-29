@@ -7,13 +7,14 @@ import { HttpModule } from '@angular/http';
 import { AppRoutingModule } from '../app-routing.module';
 import { SharedModule } from '../shared/shared.module';
 import { AppEffectsModule } from '../effects';
-import { AppStoreModule } from '../reducers';
 
 import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
 import { SidebarComponent } from './sidebar/sidebar.component';
 
 import { loadSvgResources } from '../utils/svg.util';
+
+import 'hammerjs';
 
 import 'rxjs/add/observable/from';
 import 'rxjs/add/observable/concat';
@@ -48,7 +49,6 @@ import { ServicesModule } from '../service/service.module';
     BrowserModule,
     BrowserAnimationsModule,
     ServicesModule.forRoot(),
-    AppStoreModule,
     AppEffectsModule,
   ],
   declarations: [

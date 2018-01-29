@@ -9,7 +9,7 @@ export interface State {
   entities: { [id: string]: User };
 };
 
-const initialState: State = {
+export const initialState: State = {
   ids: [],
   entities: {},
 };

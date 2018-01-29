@@ -9,7 +9,7 @@ export interface State {
   entities: { [id: string]: Task };
 };
 
-const initialState: State = {
+export const initialState: State = {
   ids: [],
   entities: {},
 };

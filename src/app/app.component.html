@@ -6,7 +6,7 @@
 
   <mat-sidenav-content class="page-container">
     <header>
-      <app-header (toggleSidenav)="sidenav.toggle()" (toggleTheme)="toggleTheme($event)"></app-header>
+      <app-header (toggleSidenav)="sidenav.toggle()" (toggleTheme)="toggleTheme($event)" (goBack)="navigateBack()"></app-header>
     </header>
     <main>
       <router-outlet></router-outlet>

@@ -22,7 +22,8 @@
       "id": "37489e0c-df34-c261-71c4-ce75357e3035",
       "projectIds": [
         "Sk2HaTagb",
-        "Hya1moGb-"
+        "Hya1moGb-",
+        "b5S2ME~"
       ],
       "roleIds": [
         0,
@@ -32,7 +33,7 @@
     },
     {
       "password": "Ls123456",
-      "name": "李四",
+      "name": "Lisi",
       "avatar": "avatars:svg-2",
       "email": "lisi@163.com",
       "id": "BkkDvwee-",
@@ -69,18 +70,18 @@
   "projects": [
     {
       "id": "Sk2HaTagb",
-      "name": "问题跟踪系统",
-      "desc": "用于 Bug 的内部跟踪和管理",
-      "coverImg": "/assets/img/covers/1.jpg",
+      "name": "Issue Tracking System",
+      "desc": "Internal Bug traking and management",
+      "coverImg": "/assets/img/covers/25.jpg",
       "members": [
         "37489e0c-df34-c261-71c4-ce75357e3035",
         "BkkDvwee-"
       ]
     },
     {
-      "name": "某某公司 ERP 系统",
-      "desc": "为某某公司开发的定制化 ERP 系统",
-      "coverImg": "/assets/img/covers/20.jpg",
+      "name": "Performance IT ERP System",
+      "desc": "Customise ERP system for Performance IT",
+      "coverImg": "/assets/img/covers/4.jpg",
       "members": [
         "37489e0c-df34-c261-71c4-ce75357e3035"
       ],
@@ -90,35 +91,44 @@
         "BkWpk7jGZb",
         "H1fTyXjMWW"
       ]
+    },
+    {
+      "name": "Electricity device maintenance",
+      "desc": "Urgernt",
+      "coverImg": "/assets/img/covers/21.jpg",
+      "members": [
+        "37489e0c-df34-c261-71c4-ce75357e3035"
+      ],
+      "id": "b5S2ME~"
     }
   ],
   "taskLists": [
     {
-      "name": "待办",
+      "name": "Todo",
       "projectId": "Sk2HaTagb",
       "order": 1,
       "id": "BkenST66lb"
     },
     {
-      "name": "已完成",
+      "name": "Finished",
       "projectId": "Sk2HaTagb",
       "order": 3,
       "id": "SkG3Ba6Tgb"
     },
     {
-      "name": "待办",
+      "name": "Todo",
       "projectId": "Hya1moGb-",
       "order": 1,
       "id": "BylTyXiM-b"
     },
     {
-      "name": "进行中",
+      "name": "Proceeding",
       "projectId": "Hya1moGb-",
       "order": 2,
       "id": "BkWpk7jGZb"
     },
     {
-      "name": "已完成",
+      "name": "Finished",
       "projectId": "Hya1moGb-",
       "order": 3,
       "id": "H1fTyXjMWW"
@@ -134,14 +144,18 @@
     {
       "name": "ABC",
       "id": "JLXHd5h"
+    },
+    {
+      "name": "Good!",
+      "id": "~iySLEj"
     }
   ],
   "tasks": [
     {
-      "desc": "吃晚餐",
+      "desc": "Have dinner",
       "taskListId": "BkenST66lb",
       "ownerId": "37489e0c-df34-c261-71c4-ce75357e3035",
-      "completed": true,
+      "completed": false,
       "participantIds": [
         "BkkDvwee-",
         "37489e0c-df34-c261-71c4-ce75357e3035"
@@ -156,10 +170,10 @@
     },
     {
       "id": 2,
-      "desc": "赶快出发去万达",
+      "desc": "Fix a bug",
       "taskListId": "SkG3Ba6Tgb",
       "ownerId": "37489e0c-df34-c261-71c4-ce75357e3035",
-      "completed": true,
+      "completed": false,
       "participantIds": [
         "37489e0c-df34-c261-71c4-ce75357e3035"
       ],
@@ -172,7 +186,7 @@
     },
     {
       "id": 3,
-      "desc": "什么情况啊",
+      "desc": "Trello discussion",
       "taskListId": "BkenST66lb",
       "ownerId": "BkkDvwee-",
       "completed": false,
@@ -186,7 +200,7 @@
     {
       "taskListId": "BylTyXiM-b",
       "desc": "登录鉴权过程中需携带 token 访问 API",
-      "completed": true,
+      "completed": false,
       "ownerId": "BkkDvwee-",
       "participantIds": [],
       "dueDate": "2017-07-03T16:00:00.000Z",
@@ -199,7 +213,7 @@
     {
       "taskListId": "BkWpk7jGZb",
       "desc": "增加统计报表功能",
-      "completed": false,
+      "completed": true,
       "ownerId": "37489e0c-df34-c261-71c4-ce75357e3035",
       "participantIds": [],
       "dueDate": "2017-07-25T16:00:00.000Z",
@@ -212,7 +226,7 @@
     {
       "taskListId": "BylTyXiM-b",
       "desc": "首页 banner 增加 2px 的 margin",
-      "completed": false,
+      "completed": true,
       "ownerId": "37489e0c-df34-c261-71c4-ce75357e3035",
       "participantIds": [
         "BkkDvwee-"
@@ -242,7 +256,7 @@
     {
       "taskListId": "H1fTyXjMWW",
       "desc": "用户可以签入签出设备",
-      "completed": true,
+      "completed": false,
       "ownerId": "37489e0c-df34-c261-71c4-ce75357e3035",
       "participantIds": [],
       "dueDate": "2017-05-20T16:00:00.000Z",

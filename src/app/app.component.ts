@@ -5,6 +5,8 @@ import * as fromRoot from './reducers';
 import { Observable } from 'rxjs/Observable';
 import { Project } from './domain/index';
 
+import * as routerActions from './actions/router.action';
+
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -24,5 +26,9 @@ export class AppComponent {
   toggleTheme(checked: boolean){
     this.darkTheme = checked;
     this.oc.getContainerElement().classList.toggle('dark-theme');
+  }
+
+  navigateBack(){
+    this.store$.dispatch(new routerActions.Back());
   }
 }

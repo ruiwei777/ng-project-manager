@@ -5,7 +5,7 @@
   "scripts": {
     "ng": "ng",
     "server": "json-server --watch ./mock/data.json --port 3000",
-    "start": "concurrently \"npm run hmr\" \"npm run server\" ",
+    "start": "concurrently \"ng serve --open\" \"npm run server\" ",
     "build": "ng build --prod",
     "test": "ng test",
     "lint": "ng lint",

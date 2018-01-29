@@ -15,7 +15,7 @@ export const slideToRight = trigger('routeAnimation', [
         style({ left: '0', opacity: 1, position: 'absolute' }),
         group([
             animate('.5s ease-in-out', style({ left: '-800px' })),
-            animate('.3s ease-in', style({ opacity: 0 })),
+            animate('.3s 200ms ease-in', style({ opacity: 0 })),
         ])
     ]),
 ]);
