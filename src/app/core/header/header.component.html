@@ -3,11 +3,11 @@
     <mat-icon>menu</mat-icon>
   </button>
   
+  <button [disabled]="(navigationId$ | async) <= 1 || (url$ | async) === '/account/login'" mat-icon-button (click)="navigateBack()"><mat-icon>arrow_back</mat-icon></button>
+
   <a mat-icon-button routerLink="/projects" routerLinkActive="active" aria-label="Navigate to home page">
     <mat-icon aria-hidden="true">home</mat-icon>
   </a>
-
-  <button [disabled]="(navigationId$ | async) <= 1 || (url$ | async) === '/account/login'" mat-icon-button (click)="navigateBack()"><mat-icon>arrow_back</mat-icon></button>
   
   <a mat-button routerLink="/account/login" routerLinkActive="active" *ngIf="!(auth$ | async).token">Login</a>
   <a mat-button routerLink="/account/register" routerLinkActive="active" *ngIf="!(auth$ | async).token">Register</a>
