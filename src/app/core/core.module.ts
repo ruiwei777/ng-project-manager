@@ -43,6 +43,7 @@ import 'rxjs/add/operator/take';
 import 'rxjs/add/operator/count';
 import 'rxjs/add/operator/do';
 import { ServicesModule } from '../service/service.module';
+import { NotFoundComponent } from './not-found/not-found.component';
 
 @NgModule({
   imports: [
@@ -57,7 +58,7 @@ import { ServicesModule } from '../service/service.module';
   declarations: [
     HeaderComponent,
      FooterComponent, 
-     SidebarComponent
+     SidebarComponent, NotFoundComponent
   ],
   exports: [
     HeaderComponent, 

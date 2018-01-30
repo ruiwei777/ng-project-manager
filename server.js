@@ -10,12 +10,14 @@ const router = express.Router();
 app.use(express.static(__dirname + '/dist'));
 
 const indexCtrl = function (req, res) {
-  res.sendFile(path.join(__dirname, "src", "index.html"));
+  res.sendFile(path.join(__dirname, "dist", "index.html"));
 }
 router.get(/.*/, indexCtrl);
 
 
-app.use(/.*/, router);
+app.use('/', router);
 
+const port = process.env.PORT || 8080
 // Start the app by listening on the default Heroku port
-app.listen(process.env.PORT || 8080);
+app.listen(port);
+console.log(`Express listening on port ${port}...`);
