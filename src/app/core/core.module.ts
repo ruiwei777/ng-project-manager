@@ -14,6 +14,9 @@ import { SidebarComponent } from './sidebar/sidebar.component';
 
 import { loadSvgResources } from '../utils/svg.util';
 
+import { environment } from '../../environments/environment';
+
+
 import 'hammerjs';
 
 import 'rxjs/add/observable/from';
@@ -64,7 +67,7 @@ import { ServicesModule } from '../service/service.module';
   ],
   providers:[
     {provide: 'BASE_CONFIG', useValue: {
-      uri: 'http://localhost:3000'
+      uri: environment.dataPath
     }}
   ]
 })

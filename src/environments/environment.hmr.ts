@@ -1,5 +1,6 @@
 export const environment = {
     production: false,
     hmr: true,
-    publicPath: ''
+    publicPath: '',
+    dataPath: '',
 };

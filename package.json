@@ -6,7 +6,7 @@
     "ng": "ng",
     "server": "json-server --watch ./mock/data.json --port 3000",
     "dev": "concurrently \"ng serve --open\" \"npm run server\" ",
-    "start": "concurrently \"node server.js\" \"npm run server\" ",
+    "start": "node server.js",
     "build": "ng build --prod",
     "test": "ng test",
     "lint": "ng lint",

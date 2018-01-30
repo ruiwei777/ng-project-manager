@@ -1,5 +1,6 @@
 export const environment = {
   production: true,
   hmr: false,
-  publicPath: ''
+  publicPath: '',
+  dataPath: '//safeatnight.tk:3000',
 };
