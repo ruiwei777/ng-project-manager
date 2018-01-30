@@ -12,6 +12,7 @@ import { User } from '../../domain';
 export class InviteComponent implements OnInit {
 
   members: User[];
+  dialogTitle: string;
   constructor(
     @Inject(MAT_DIALOG_DATA) public data: any,
     private dialogRef: MatDialogRef<ProjectListComponent>
@@ -19,6 +20,7 @@ export class InviteComponent implements OnInit {
 
   ngOnInit() {
     this.members = [...this.data.members];
+    this.dialogTitle = this.data.dialogTitle ? this.data.dialogTitle : 'Invite a member';
   }
 
   onSubmit({value, valid}, e:Event) {

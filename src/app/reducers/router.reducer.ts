@@ -8,7 +8,7 @@ export interface State {
 
 export const initialState: State = {
   state: {},
-  navigationId: 0;
+  navigationId: 0
 }
 
 export const getNavigationId = (state: State) => state.navigationId;

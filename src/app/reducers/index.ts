@@ -97,7 +97,7 @@ export function stateSetter(reducer: ActionReducer<any>): ActionReducer<any> {
   };
 }
 
-const resetOnLogout = (reducer: Function) => {
+export function resetOnLogout(reducer: ActionReducer<any>): ActionReducer<any> {
   return function (state, action) {
     let newState;
     if (action.type === authActions.ActionTypes.LOGOUT) {

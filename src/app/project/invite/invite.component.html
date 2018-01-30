@@ -1,18 +1,11 @@
-<form #f="ngForm" (ngSubmit)="onSubmit(f, $event)">
-  <h1 mat-dialog-title>Invite a new member</h1>
-  <mat-dialog-content>
-    <app-chip-list [label]="'Invite members'" name="members" [(ngModel)]="members"></app-chip-list>
-
-  </mat-dialog-content>
-
-  <mat-dialog-actions>
-    <button mat-raised-button type="submit" color="primary" [disabled]="!f.valid">Invite</button>
-    <button mat-raised-button type="button" mat-dialog-close>Cancel</button>
-  </mat-dialog-actions>
+<h2 mat-dialog-title>{{dialogTitle}}</h2>
+<form class="full-width" #f="ngForm" (ngSubmit)="onSubmit($event, f)">
+  <app-chip-list [label]="'Invite a member'" name="members" [(ngModel)]="members">
+  </app-chip-list>
+  <div mat-dialog-actions>
+    <button mat-raised-button color="primary" type="submit" [disabled]="!f.valid">
+      Invite
+    </button>
+    <button mat-dialog-close mat-raised-button type="button">Close</button>
+  </div>
 </form>
-
-<mat-autocomplete #autoMembers="matAutocomplete" [displayWith]="displayUser">
-  <mat-option *ngFor="let item of items" [value]="item">
-    {{item.name}}
-  </mat-option>
-</mat-autocomplete>
