@@ -12,7 +12,7 @@ if (environment.production) {
 function basicBootstrap(AppModule) {
   return platformBrowserDynamic().bootstrapModule(AppModule)
     .then(MODULE_REF => {
-      console.log('Bootstrap success')
+      // console.log('Bootstrap success')
 
       return MODULE_REF
     })

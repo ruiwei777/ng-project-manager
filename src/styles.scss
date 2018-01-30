@@ -10,6 +10,10 @@ body, html {
     margin: 0;
 }
 
+a {
+    color: #fff;
+}
+
 .full-width {
     width: 100%;
 }
@@ -73,39 +77,38 @@ body, html {
     text-align: right;
 }
 
-.action-text{
+.action-text {
     margin: 10px 0 !important;
     text-align: right;
     font-size: .8em;
 }
 
-
 *::-webkit-scrollbar {
     height: 6px;
     width: 6px;
-} 
+}
 
 *::-webkit-scrollbar-thumb {
-    background-color: rgba(0,0,0,0.3);
-    outline: 1px solid rgba(0,0,0,0.7);
+    background-color: rgba(0, 0, 0, 0.3);
+    outline: 1px solid rgba(0, 0, 0, 0.7);
 }
 
 *::-webkit-scrollbar-track {
-    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+    -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
 }
 
-.dark-theme{
-    app-task-list{
-        box-shadow: 0px 5px 20px -10px rgba(255,255,255,1) !important;
-        
+/* dark-theme setting */
+.dark-theme {
+    app-task-list {
+        box-shadow: 0px 1px 20px -5px rgba(255, 255, 255, 3) !important;
     }
 
-    mat-list-item{
-        box-shadow: 0px 5px 20px -10px rgba(255,255,255,1) !important;
-        background-color: rgba(0,0,0,.15) !important;
+    mat-list-item {
+        box-shadow: 0px 5px 20px -10px rgba(255, 255, 255, 1) !important;
+        background-color: rgba(0, 0, 0, 0.15) !important;
 
-        &:hover{
-            background-color: rgba(0,0,0,.3) !important; 
+        &:hover {
+            background-color: rgba(0, 0, 0, 0.3) !important;
         }
     }
 }
