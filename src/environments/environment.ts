@@ -7,5 +7,5 @@ export const environment = {
   production: false,
   hmr: false,
   publicPath: '',
-  dataPath: '//safeatnight.tk:3000',
+  dataPath: '//localhost:3000',
 };
