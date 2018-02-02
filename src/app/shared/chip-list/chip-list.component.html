@@ -2,7 +2,7 @@
   <span>{{label}}</span>
   <mat-chip-list>
     <mat-chip selected="true" color="primary" *ngFor="let member of items">
-      {{member.name}}
+      {{member.first_name + " " + member.last_name}}
       <span class="remove-tag" (click)="removeMember(member)">x</span>
     </mat-chip>
   </mat-chip-list>
@@ -12,6 +12,6 @@
   </mat-input-container>
 </div>
 
-<mat-autocomplete #autoMember="matAutocomplete" [displayWith]="displayUser">
-  <mat-option *ngFor="let item of memberResults$ | async" [value]="item" (selectionChange)="handleMemberSelection(item)">{{item.name}}</mat-option>
+<mat-autocomplete #autoMember="matAutocomplete" [displayWith]="displayUser" (optionSelected)="handleMemberSelection($event)">
+  <mat-option *ngFor="let member of memberResults$ | async" [value]="member">{{member.first_name + " " + member.last_name}}</mat-option>
 </mat-autocomplete>

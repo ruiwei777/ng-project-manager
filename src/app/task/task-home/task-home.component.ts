@@ -48,6 +48,7 @@ export class TaskHomeComponent implements OnInit, OnDestroy {
   ngOnInit() {
   }
 
+  // TODO
   handleQuickTask(desc: string, list: TaskList) {
     const user$ = this.store$.select(fromRoot.getAuthState).map(auth => auth.user);
     user$.take(1)
@@ -58,7 +59,8 @@ export class TaskHomeComponent implements OnInit, OnDestroy {
         ownerId: user.id,
         completed: false,
         createDate: new Date(),
-        participantIds: []
+        participantIds: [],
+        order: 0
       })))
   }
 
@@ -81,9 +83,14 @@ export class TaskHomeComponent implements OnInit, OnDestroy {
   launchNewTaskDialog(list: TaskList) {
     const user$ = this.store$.select(fromRoot.getAuthState).map(auth => auth.user);
     user$.take(1)
-      .map(user => this.dialog.open(NewTaskComponent, { data: { title: 'Create task', user } }))
+      .map(user => this.dialog.open(NewTaskComponent, { data: { title: 'Create task', owner: user } }))
       .switchMap(dialogRef => dialogRef.afterClosed().take(1).filter(n => n))
-      .subscribe(data => this.store$.dispatch(new taskActions.Add({ ...data, taskListId: list.id, completed: false, createDate: new Date() })))
+      .subscribe(data => this.store$.dispatch(new taskActions.Add({
+        ...data,
+        taskListId: list.id,
+        completed: false,
+        createDate: new Date()
+      })))
   }
 
   launchNewTaskListDialog(e: Event) {

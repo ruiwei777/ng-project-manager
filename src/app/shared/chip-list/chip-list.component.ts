@@ -3,6 +3,7 @@ import {ControlValueAccessor, FormBuilder, FormGroup, FormControl, NG_VALIDATORS
 import {Observable} from 'rxjs/Observable';
 import {UserService} from '../../service/user.service';
 import {User} from '../../domain';
+import { MatAutocompleteSelectedEvent } from '@angular/material';
 
 @Component({
   selector: 'app-chip-list',
@@ -51,17 +52,17 @@ export class ChipsListComponent implements ControlValueAccessor, OnInit {
     private propagateChange = (_: any) => {};
   
     // 设置初始值
-    public writeValue(obj: User[]) {
-      if (obj && this.multiple) {
-        const userEntities = obj.reduce((entities, user) => {
+    public writeValue(userArray: User[]) {
+      if (userArray && this.multiple) {
+        const userEntities = userArray.reduce((entities, user) => {
           return {...entities, [user.id]: user};
         }, {});
         if (this.items) {
           const remaining = this.items.filter(item => !userEntities[item.id]);
-          this.items = [...remaining, ...obj];
+          this.items = [...remaining, ...userArray];
         }
-      } else if (obj && !this.multiple) {
-        this.items = [...obj];
+      } else if (userArray && !this.multiple) {
+        this.items = [...userArray];
       }
     }
   
@@ -95,16 +96,21 @@ export class ChipsListComponent implements ControlValueAccessor, OnInit {
       this.propagateChange(this.items);
     }
   
-    handleMemberSelection(user: User) {
+    handleMemberSelection(e: MatAutocompleteSelectedEvent) {
+      // if user is alreday in items, return
+      const user = e.option.value;
       if (this.items.map(u => u.id).indexOf(user.id) !== -1) {
         return;
       }
+
       if (this.multiple) {
         this.items = [...this.items, user];
       } else {
         this.items = [user];
       }
-      this.chips.patchValue({ memberSearch: user.name });
+
+      // clear search criteria, propagate change
+      this.chips.patchValue({memberSearch: ''});
       this.propagateChange(this.items);
     }
   
@@ -116,7 +122,7 @@ export class ChipsListComponent implements ControlValueAccessor, OnInit {
       return obs.startWith('')
         .debounceTime(300)
         .distinctUntilChanged()
-        .filter(s => s && s.length > 1)
+        .filter(s => s.length > 0)
         .switchMap(str => this.service.searchUsers(str));
     }
   
