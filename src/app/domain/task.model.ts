@@ -9,9 +9,8 @@ export interface Task {
   participantIds: string[];
   dueDate?: Date;
   priority: number;
-  order: number;
   remark?: string;
-  // tags?: string[];
+  tags?: string[];
   reminder?: Date;
   createDate?: Date;
 }

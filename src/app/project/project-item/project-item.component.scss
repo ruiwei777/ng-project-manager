@@ -1,3 +1,10 @@
 mat-card{
-    max-width: 330px;
+    max-width: 260px;
+}
+
+mat-card-actions{
+    display: flex;
+    .btn-delete{
+        margin-left: auto;
+    }
 }

@@ -64,7 +64,7 @@ const moveAllTasks = (state, action) => {
 
 const delByProject = (state, action) => {
   const project = <Project>action.payload;
-  const taskListIds = project.taskLists;
+  const taskListIds = project.taskLists || [];
   const remainingIds = state.ids.filter(id => taskListIds.indexOf(state.entities[id].taskListId) === -1)
   const remainingEntites = remainingIds.reduce((entities, id) => ({ ...entities, [id]: state.entities[id] }), {});
   return {

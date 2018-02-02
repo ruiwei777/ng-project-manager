@@ -51,6 +51,7 @@ export class TaskHomeComponent implements OnInit, OnDestroy {
   // TODO
   handleQuickTask(desc: string, list: TaskList) {
     const user$ = this.store$.select(fromRoot.getAuthState).map(auth => auth.user);
+
     user$.take(1)
       .subscribe(user => this.store$.dispatch(new taskActions.Add({
         desc,
@@ -60,7 +61,6 @@ export class TaskHomeComponent implements OnInit, OnDestroy {
         completed: false,
         createDate: new Date(),
         participantIds: [],
-        order: 0
       })))
   }
 
