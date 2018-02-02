@@ -2,7 +2,8 @@ import { NgModule, Optional, SkipSelf } from '@angular/core';
 import { DomSanitizer, BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatIconRegistry } from '@angular/material';
-import { HttpModule } from '@angular/http';
+import { HttpModule } from '@angular/http'; // TODO: remove this after migration
+import { HttpClientModule } from '@angular/common/http';
 
 import { AppRoutingModule } from '../app-routing.module';
 import { SharedModule } from '../shared/shared.module';
@@ -52,6 +53,7 @@ import { NotFoundComponent } from './not-found/not-found.component';
     AppRoutingModule,
     BrowserModule,
     BrowserAnimationsModule,
+    HttpClientModule, // After BrowserModule
     ServicesModule.forRoot(),
     AppEffectsModule,
   ],

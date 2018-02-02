@@ -20,7 +20,7 @@ export class CopyTaskComponent implements OnInit {
 
   ngOnInit() {
     this.form = this.fb.group({
-      targetListId: []
+      targetListId: ['', Validators.required]
     })
     this.lists = this.data.lists;
   }

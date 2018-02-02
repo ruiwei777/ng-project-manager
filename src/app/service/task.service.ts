@@ -1,5 +1,5 @@
 import { Injectable, Inject } from '@angular/core';
-import { Http, Headers } from '@angular/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Task, TaskList, User } from '../domain';
 import { Observable } from 'rxjs/Observable';
 import * as _ from 'lodash';
@@ -8,19 +8,23 @@ import * as _ from 'lodash';
 export class TaskService {
 
   private readonly domain = 'tasks';
-  private headers = new Headers({
-    'Content-Type': 'application/json'
-  })
 
-  constructor(private http: Http,
+  // just an example, this is not needed
+  private httpOptions = {
+    headers: new HttpHeaders({
+      'Content-Type':  'application/json',
+      'Authorization': 'my-auth-token'
+    })
+  };
+
+  constructor(private http: HttpClient,
     @Inject('BASE_CONFIG') private config
   ) { }
 
   add(task: Task): Observable<Task> {
     delete task.id;
     const url = `${this.config.uri}/${this.domain}`;
-    return this.http.post(url, JSON.stringify(task), { headers: this.headers })
-      .map(res => res.json());
+    return this.http.post<Task>(url, task);
   }
 
   update(task: Task): Observable<Task> {
@@ -34,23 +38,19 @@ export class TaskService {
       participantIds: task.participantIds,
       remark: task.remark
     }
-    return this.http.patch(url, JSON.stringify(toUpdate), { headers: this.headers })
-      .map(res => res.json());
+    return this.http.patch<Task>(url,toUpdate);
   }
 
-  // DELETE /projects instead of deleting the records
   del(task: Task): Observable<Task> {
     const url = `${this.config.uri}/tasklists/${task.id}`;
     return this.http.delete(url)
       .mapTo(task);
   }
 
-  // GET /projects
   get(taskListId: string): Observable<Task[]> {
     const uri = `${this.config.uri}/${this.domain}`;
     return this.http
-      .get(uri, { params: { 'taskListId': taskListId } })
-      .map(res => res.json() as Task[]);
+      .get<Task[]>(uri, { params: { 'taskListId': taskListId } });
   }
 
   getByLists(lists: TaskList[]): Observable<Task[]> {
@@ -62,15 +62,13 @@ export class TaskService {
   complete(task: Task): Observable<Task> {
     const url = `${this.config.uri}/${this.domain}/${task.id}`;
 
-    return this.http.patch(url, JSON.stringify({ completed: !task.completed }), { headers: this.headers })
-      .map(res => res.json());
+    return this.http.patch<Task>(url, { completed: !task.completed });
   }
 
   move(taskId: string, taskListId: string): Observable<Task> {
     const url = `${this.config.uri}/${this.domain}/${taskId}`;
 
-    return this.http.patch(url, JSON.stringify({ taskListId }))
-      .map(res => res.json());
+    return this.http.patch<Task>(url, { taskListId });
   }
 
   moveAll(srcListId: string, targetListId: string): Observable<Task[]> {

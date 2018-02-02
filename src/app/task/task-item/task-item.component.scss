@@ -74,6 +74,7 @@ mat-icon.avatar {
 mat-list-item{
     margin-bottom: .5em;
     background-color: #f0f0f0;
+    cursor: pointer;
 
     &:hover{
         background-color: #e3e3e3;

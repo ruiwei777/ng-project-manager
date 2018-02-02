@@ -109,11 +109,16 @@ export class TaskHomeComponent implements OnInit, OnDestroy {
       })
   }
 
-  launchCopyTaskDialog(list: TaskList) {
-    this.lists$.map(l => l.filter(n => n.id !== list.id))
-      .map(lists => this.dialog.open(CopyTaskComponent, { data: { lists } }))
-      .switchMap(dialogRef => dialogRef.afterClosed().take(1).filter(n => n))
-      .subscribe((data: string) => this.store$.dispatch(new taskActions.MoveAll({srcListId: list.id, targetListId: data})))
+  // Do not open dialog in a stream, or it will be repeatedly triggered
+  launchCopyTaskDialog(srcList: TaskList) {
+    let targetLists: TaskList[];
+    const sub: Subscription = this.lists$
+      .map(taskLists => taskLists.filter(n => n.id !== srcList.id))
+      .subscribe(taskLists => targetLists = taskLists);
+
+    this.dialog.open(CopyTaskComponent, { data: { lists: targetLists } })
+    .afterClosed().take(1).filter(n => n)
+    .subscribe((data: string) => this.store$.dispatch(new taskActions.MoveAll({ srcListId: srcList.id, targetListId: data })))
   }
 
 

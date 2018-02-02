@@ -82,7 +82,6 @@ export function reducer(state = initialState, action: actions.ActionTypes): Stat
       return delTask(state, action);
     }
     case actions.ActionTypes.COMPLETE_SUCCESS:
-    case actions.ActionTypes.MOVE_ALL_SUCCESS:
     case actions.ActionTypes.UPDATE_SUCCESS: {
       return updateTask(state, action);
     }
