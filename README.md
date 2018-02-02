@@ -27,3 +27,23 @@ Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.
 ## Running end-to-end tests
 Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
 
+## TODO
+* migrate service from Http to HttpClient
+
+auth-guard.service
+
+auth.service
+
+login-guard.service
+
+project.service
+
+quote.service
+
+task-list.service
+
+~~task.service~~
+
+user.service
+
+* fix newTask bug
