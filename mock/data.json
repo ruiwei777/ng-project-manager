@@ -16,7 +16,7 @@
   "users": [
     {
       "password": "test1234",
-      "name": "Test user",
+      "username": "Test user",
       "avatar": "avatars:svg-1",
       "email": "test@gmail.com",
       "id": "37489e0c-df34-c261-71c4-ce75357e3035",
@@ -29,11 +29,13 @@
         0,
         1,
         2
-      ]
+      ],
+      "first_name": "Test",
+      "last_name": "Account"
     },
     {
       "password": "Ls123456",
-      "name": "Lisi",
+      "username": "Lisi",
       "avatar": "avatars:svg-2",
       "email": "lisi@163.com",
       "id": "BkkDvwee-",
@@ -42,7 +44,9 @@
       ],
       "roleIds": [
         1
-      ]
+      ],
+      "first_name": "Si",
+      "last_name": "Li"
     },
     {
       "email": "1@gmail.com",
@@ -155,7 +159,7 @@
       "desc": "Have dinner",
       "taskListId": "BkenST66lb",
       "ownerId": "37489e0c-df34-c261-71c4-ce75357e3035",
-      "completed": false,
+      "completed": true,
       "participantIds": [
         "BkkDvwee-",
         "37489e0c-df34-c261-71c4-ce75357e3035"
