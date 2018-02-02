@@ -17,6 +17,7 @@ import { TaskList, Task } from '../../domain/index';
 
 import * as taskListActions from '../../actions/task-list.action';
 import { Subscription } from 'rxjs/Subscription';
+import { max, reduce, tap } from 'rxjs/operators';
 
 @Component({
   selector: 'app-task-home',
@@ -89,11 +90,27 @@ export class TaskHomeComponent implements OnInit, OnDestroy {
     const dialogRef = this.dialog.open(NewTaskListComponent, {
       data: { title: 'Create task list' }
     });
+
+    // find the current max order, then generate the newTaskList's order
+    let newOrder: number;
+    this.lists$.take(1).do((taskLists: TaskList[]) => {
+      newOrder = 1 + taskLists.reduce((maxOrder, taskList) => taskList.order > maxOrder ? taskList.order : maxOrder, 1)
+    });
+
+    let currProjectId;
+    this.projectId$.take(1).do(projectId => currProjectId = projectId);
+
+
     dialogRef.afterClosed()
       .take(1)
       .filter(n => n)
-      .subscribe(result => {
-        this.store$.dispatch(new actions.Add(result));
+      .subscribe(({ name }) => {
+        const newTaskList: TaskList = {
+          name,
+          projectId: currProjectId,
+          order: newOrder
+        }
+        this.store$.dispatch(new actions.Add(newTaskList));
       })
   }
 
@@ -109,7 +126,7 @@ export class TaskHomeComponent implements OnInit, OnDestroy {
       })
   }
 
-  // Do not open dialog in a stream, or it will be repeatedly triggered
+  // Do not open dialog in a stream, otherwise it will be repeatedly triggered
   launchCopyTaskDialog(srcList: TaskList) {
     let targetLists: TaskList[];
     const sub: Subscription = this.lists$
@@ -117,8 +134,8 @@ export class TaskHomeComponent implements OnInit, OnDestroy {
       .subscribe(taskLists => targetLists = taskLists);
 
     this.dialog.open(CopyTaskComponent, { data: { lists: targetLists } })
-    .afterClosed().take(1).filter(n => n)
-    .subscribe((data: string) => this.store$.dispatch(new taskActions.MoveAll({ srcListId: srcList.id, targetListId: data })))
+      .afterClosed().take(1).filter(n => n)
+      .subscribe((data: string) => this.store$.dispatch(new taskActions.MoveAll({ srcListId: srcList.id, targetListId: data })))
   }
 
 
