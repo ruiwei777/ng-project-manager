@@ -71,9 +71,7 @@ export class ProjectService {
       .get(uri)
       .map(res => res.json() as Project)
       .switchMap(project => {
-        const existingMemberIds = project.members;
-        const invitedIds = users.map(user => user.id);
-        const newIds = _.union(existingMemberIds, invitedIds);
+        const newIds = users.map(user => user.id);
         return this.http.patch(uri, JSON.stringify({ members: newIds }), { headers: this.headers });
       })
       .map(res => res.json());

@@ -26,7 +26,7 @@ const addProject = (state, action) => {
 }
 
 const updateProject = (state, action) => {
-  const project = action.payload;
+  const project = <Project>action.payload;
   const entities = { ...state.entities, [project.id]: project };
   return { ...state, entities };
 }
