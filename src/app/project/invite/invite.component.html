@@ -1,11 +1,11 @@
 <h2 mat-dialog-title>{{dialogTitle}}</h2>
-<form class="full-width" #f="ngForm" (ngSubmit)="onSubmit($event, f)">
+<form class="full-width" #f="ngForm" (ngSubmit)="onSubmit(f, $event)">
   <app-chip-list [label]="'Invite a member'" name="members" [(ngModel)]="members">
   </app-chip-list>
   <div mat-dialog-actions>
     <button mat-raised-button color="primary" type="submit" [disabled]="!f.valid">
-      Invite
+      Save
     </button>
-    <button mat-dialog-close mat-raised-button type="button">Close</button>
+    <button mat-dialog-close mat-raised-button type="button">Cancel</button>
   </div>
 </form>
