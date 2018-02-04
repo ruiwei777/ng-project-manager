@@ -3,7 +3,7 @@
   <mat-chip-list>
     <mat-chip selected="true" color="primary" *ngFor="let member of items">
       {{member.first_name + " " + member.last_name}}
-      <span class="remove-tag" (click)="removeMember(member)">x</span>
+      <button class="btn-remove-member" mat-icon-button type="button" (click)="removeMember(member)"><mat-icon>remove_circle_outline</mat-icon></button>
     </mat-chip>
   </mat-chip-list>
 

@@ -30,7 +30,7 @@ export class ChipsListComponent implements ControlValueAccessor, OnInit {
     @ViewChild('autoMember') autoMember;
     @Input() multiple = true;
     @Input() label = 'Add/Edit member';
-    @Input() placeholderText = 'Please enter member email';
+    @Input() placeholderText = 'Enter member email to search';
     items: User[];
     chips: FormGroup;
     memberResults$: Observable<User[]>;
