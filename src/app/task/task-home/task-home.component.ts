@@ -94,6 +94,8 @@ export class TaskHomeComponent implements OnInit, OnDestroy {
   }
 
   launchNewTaskListDialog(e: Event) {
+    e.preventDefault();
+    e.stopPropagation();
     const dialogRef = this.dialog.open(NewTaskListComponent, {
       data: { title: 'Create task list' }
     });

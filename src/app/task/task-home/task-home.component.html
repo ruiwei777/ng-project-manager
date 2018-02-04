@@ -1,7 +1,15 @@
 <div class="page-container">
+  <div *ngIf="(lists$ | async).length === 0" class="empty-container">
+    <mat-card>
+      <div>This project has no task lists.</div>
+      <div class="mt-1">
+        <button class="full-width" mat-raised-button (click)="launchNewTaskListDialog($event)" type="button" color="accent">Create</button>
+      </div>
+    </mat-card>
+  </div>
   <app-task-list *ngFor="let list of (lists$ | async)" class="list-container" app-droppable [dragEnterClass]="'drag-enter'"
-  [app-draggable]="true" [dragTag]="'task-list'" [draggedClass]="'drag-start'" [dragData]="lists" [dropTags]="['task-item', 'task-list']"
-  (dropped)="handleMove($event, lists)">
+    [app-draggable]="true" [dragTag]="'task-list'" [draggedClass]="'drag-start'" [dragData]="lists" [dropTags]="['task-item', 'task-list']"
+    (dropped)="handleMove($event, lists)">
     <app-task-header [header]="list.name" (newTask)="launchNewTaskDialog(list)" (moveAll)="launchCopyTaskDialog(list)" (deleteList)="launchDeleteListDialog(list)"
       (editList)="launchEditTaskListDialog(list)">
     </app-task-header>

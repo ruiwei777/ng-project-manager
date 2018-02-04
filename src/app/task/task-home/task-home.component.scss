@@ -11,6 +11,14 @@
     display: flex;
     flex-wrap: nowrap;
     overflow-x: auto;
+
+    .empty-container{
+        height: 100%;
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
 }
 
 .list-container{
