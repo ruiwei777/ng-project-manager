@@ -40,7 +40,7 @@ project.service
 
 quote.service
 
-task-list.service
+~~task-list.service~~
 
 ~~task.service~~
 
