@@ -19,7 +19,6 @@ export class TaskItemComponent implements OnInit {
   @Output() taskClick = new EventEmitter<void>();
   state = 'normal';
   owner$: Observable<User>;
-  owner: User;
 
   constructor(private store$: Store<fromRoot.State>) {
     this.owner$ = this.store$.select(fromRoot.getUserEntities).map(entities => entities[this.item.ownerId]);

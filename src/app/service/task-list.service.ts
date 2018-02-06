@@ -18,7 +18,8 @@ export class TaskListService {
     }
 
     /**
-     * Note: this is PATCH (partial update), not PUT
+     * Partial update the name of input task list.
+     * This is PATCH, not PUT.
      * @param taskList 
      */
     update(taskList: TaskList): Observable<TaskList> {
@@ -53,7 +54,7 @@ export class TaskListService {
         const dragUrl = `${this.config.uri}/${this.domain}/${src.id}`;
         const dropUrl = `${this.config.uri}/${this.domain}/${target.id}`;
         const drag$ = this.http.patch<TaskList>(dragUrl, { order: target.order });
-        const drop$ = this.http.patch<TaskList>(dragUrl, { order: src.order });
+        const drop$ = this.http.patch<TaskList>(dropUrl, { order: src.order });
         return Observable
             .concat(drag$, drop$)
             .reduce((array, y) => [...array, y], [])

@@ -18,6 +18,7 @@ import { TaskList, Task } from '../../domain/index';
 import * as taskListActions from '../../actions/task-list.action';
 import { Subscription } from 'rxjs/Subscription';
 import { max, reduce, tap } from 'rxjs/operators';
+import { DragData } from '../../directive/drag-drop.service';
 
 @Component({
   selector: 'app-task-home',
@@ -64,15 +65,23 @@ export class TaskHomeComponent implements OnInit, OnDestroy {
       })))
   }
 
-  handleMove(e, taskList) {
+  handleMove(e: DragData, targetTaskList: TaskList) {
     switch (e.tag) {
       case 'task-item': {
-        console.log("item");
+        const draggedTask = <Task>e.data;
+        this.store$.dispatch(new taskActions.Move({
+          taskId: draggedTask.id,
+          taskListId: targetTaskList.id
+        }))
         break;
       }
 
       case 'task-list': {
-        console.log("list");
+        const srcTaskList = <TaskList>e.data;
+        this.store$.dispatch(new actions.Swap({
+          source: srcTaskList,
+          target: targetTaskList
+        }))
         break;
       }
 
