@@ -102,12 +102,12 @@ export class TaskHomeComponent implements OnInit, OnDestroy {
 
     // find the current max order, then generate the newTaskList's order
     let newOrder: number;
-    this.lists$.take(1).do((taskLists: TaskList[]) => {
+    this.lists$.take(1).subscribe((taskLists: TaskList[]) => {
       newOrder = 1 + taskLists.reduce((maxOrder, taskList) => taskList.order > maxOrder ? taskList.order : maxOrder, 1)
     });
 
     let currProjectId;
-    this.projectId$.take(1).do(projectId => currProjectId = projectId);
+    this.projectId$.take(1).subscribe(projectId => currProjectId = projectId);
 
 
     dialogRef.afterClosed()
