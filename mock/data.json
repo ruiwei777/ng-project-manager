@@ -46,7 +46,9 @@
       "email": "lisi@163.com",
       "id": "BkkDvwee-",
       "projectIds": [
-        "Sk2HaTagb"
+        "Sk2HaTagb",
+        "b5S2ME~",
+        "Hya1moGb-"
       ],
       "roleIds": [
         1
@@ -85,7 +87,8 @@
       "coverImg": "/assets/img/covers/25.jpg",
       "members": [
         "37489e0c-df34-c261-71c4-ce75357e3035",
-        "BkkDvwee-"
+        "BkkDvwee-",
+        "jkaLvpK"
       ]
     },
     {
@@ -93,7 +96,8 @@
       "desc": "Customise ERP system for Performance IT",
       "coverImg": "/assets/img/covers/4.jpg",
       "members": [
-        "37489e0c-df34-c261-71c4-ce75357e3035"
+        "37489e0c-df34-c261-71c4-ce75357e3035",
+        "BkkDvwee-"
       ],
       "id": "Hya1moGb-",
       "taskLists": [
@@ -144,20 +148,10 @@
       "id": "H1fTyXjMWW"
     },
     {
-      "name": "1212",
-      "id": "KTqHqOW"
-    },
-    {
-      "name": "sdafsdf",
-      "id": "yNJ81y8"
-    },
-    {
-      "name": "ABC",
-      "id": "JLXHd5h"
-    },
-    {
-      "name": "Good!",
-      "id": "~iySLEj"
+      "name": "WIP",
+      "projectId": "Sk2HaTagb",
+      "order": 4,
+      "id": "hpRA6P6"
     }
   ],
   "tasks": [
