@@ -1,7 +1,7 @@
 import { NgModule, Optional, SkipSelf } from '@angular/core';
 import { DomSanitizer, BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { MatIconRegistry } from '@angular/material';
+import { MatIconRegistry, MatSidenavModule } from '@angular/material';
 import { HttpModule } from '@angular/http'; // TODO: remove this after migration
 import { HttpClientModule } from '@angular/common/http';
 
@@ -53,25 +53,30 @@ import { NotFoundComponent } from './not-found/not-found.component';
     AppRoutingModule,
     BrowserModule,
     BrowserAnimationsModule,
+    MatSidenavModule,
     HttpClientModule, // After BrowserModule
     ServicesModule.forRoot(),
     AppEffectsModule,
   ],
   declarations: [
     HeaderComponent,
-     FooterComponent, 
-     SidebarComponent, NotFoundComponent
+    FooterComponent,
+    SidebarComponent,
+    NotFoundComponent
   ],
   exports: [
-    HeaderComponent, 
-    FooterComponent, 
+    HeaderComponent,
+    FooterComponent,
     SidebarComponent,
+    MatSidenavModule,
     AppRoutingModule
   ],
-  providers:[
-    {provide: 'BASE_CONFIG', useValue: {
-      uri: environment.dataPath
-    }}
+  providers: [
+    {
+      provide: 'BASE_CONFIG', useValue: {
+        uri: environment.dataPath
+      }
+    }
   ]
 })
 export class CoreModule {

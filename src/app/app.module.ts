@@ -1,13 +1,11 @@
-import { BrowserModule } from '@angular/platform-browser';
 import { ApplicationRef, NgModule } from '@angular/core';
+import { CommonModule } from '@angular/common';
 
 import { StoreModule, Store } from '@ngrx/store';
 import { StoreRouterConnectingModule, RouterStateSerializer } from '@ngrx/router-store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { reducers, metaReducers, CustomSerializer, State } from './reducers';
 import { createInputTransfer, createNewHosts, removeNgStyles } from '@angularclass/hmr'
-
-import { MatSidenavModule } from '@angular/material';
 
 import { AppComponent } from './app.component';
 import { CoreModule } from './core/core.module';
@@ -19,9 +17,8 @@ import { Routes } from '@angular/router';
     AppComponent,
   ],
   imports: [
-    BrowserModule,
+    CommonModule,
     CoreModule,
-    MatSidenavModule,
 
     StoreModule.forRoot(reducers, { metaReducers }),
     StoreRouterConnectingModule.forRoot({
