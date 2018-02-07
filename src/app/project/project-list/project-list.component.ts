@@ -39,6 +39,7 @@ export class ProjectListComponent implements OnInit, OnDestroy {
     private service$: ProjectService,
     private store$: Store<fromRoot.State>
   ) {
+
     this.store$.dispatch(new actions.Load(null));
     this.projects$ = this.store$.select(fromRoot.getProjects);
     this.listAnim$ = this.projects$.map(p => p.length);

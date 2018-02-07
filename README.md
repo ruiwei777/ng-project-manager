@@ -36,7 +36,7 @@ auth.service
 
 login-guard.service
 
-project.service
+~~project.service~~
 
 quote.service
 
@@ -46,4 +46,3 @@ quote.service
 
 user.service
 
-* fix newTask bug

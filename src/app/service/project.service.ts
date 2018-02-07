@@ -1,26 +1,21 @@
 import { Injectable, Inject } from '@angular/core';
-import { Http, Headers } from '@angular/http';
+import { HttpClient } from '@angular/common/http';
 import { Project, User } from '../domain';
 import { Observable } from 'rxjs/Observable';
-import * as _ from 'lodash';
 
 @Injectable()
 export class ProjectService {
 
   private readonly domain = 'projects';
-  private headers = new Headers({
-    'Content-Type': 'application/json'
-  })
 
-  constructor(private http: Http,
+  constructor(private http: HttpClient,
     @Inject('BASE_CONFIG') private config
   ) { }
 
   add(project: Project): Observable<Project> {
     delete project.id;
     const url = `${this.config.uri}/${this.domain}`;
-    return this.http.post(url, JSON.stringify(project), { headers: this.headers })
-      .map(res => res.json());
+    return this.http.post<Project>(url, project);
   }
 
   update(project: Project): Observable<Project> {
@@ -30,51 +25,44 @@ export class ProjectService {
       desc: project.desc,
       coverImg: project.coverImg
     }
-    return this.http.patch(url, JSON.stringify(toUpdate), { headers: this.headers })
-      .map(res => res.json());
+    return this.http.patch<Project>(url, toUpdate);
   }
 
   // DELETE /projects instead of deleting the records
   del(project: Project): Observable<Project> {
     const deltask$ = Observable.from(project.taskLists ? project.taskLists : [])
-      .mergeMap(listId => this.http
-        .delete(`${this.config.uri}/taskLists/${listId}`))
+      .mergeMap(listId => this.http.delete(`${this.config.uri}/taskLists/${listId}`))
       .count();
     const uri = `${this.config.uri}/${this.domain}/${project.id}`;
-    return deltask$.switchMap(p => this.http
-      .delete(uri)
-      .map(_ => project));
+    return deltask$
+      .switchMap(p => this.http
+        .delete(uri)
+        .mapTo(project)
+      );
   }
 
   // GET /projects
   get(userId: string): Observable<Project[]> {
     const uri = `${this.config.uri}/${this.domain}`;
     return this.http
-      .get(uri, { params: { 'members_like': userId }, headers: this.headers })
-      .map(res => res.json());
+      .get<Project[]>(uri, { params: { 'members_like': userId } });
   }
 
   updateTaskLists(project: Project): Observable<Project> {
     const uri = `${this.config.uri}/${this.domain}/${project.id}`;
-    const toUpdate = {
-      taskLists: project.taskLists
-    };
-    return this.http
-      .patch(uri, JSON.stringify(toUpdate), { headers: this.headers })
-      .map(res => res.json());
+    const toUpdate = { taskLists: project.taskLists };
+    return this.http.patch<Project>(uri, toUpdate);
   }
 
-  inviteMembers(projectId: string, users: User[]) {
+  inviteMembers(projectId: string, users: User[]): Observable<Project> {
     const uri = `${this.config.uri}/${this.domain}/${projectId}`;
 
     return this.http
-      .get(uri)
-      .map(res => res.json() as Project)
+      .get<Project>(uri)
       .switchMap(project => {
         const newIds = users.map(user => user.id);
-        return this.http.patch(uri, JSON.stringify({ members: newIds }), { headers: this.headers });
-      })
-      .map(res => res.json());
+        return this.http.patch<Project>(uri, { members: newIds });
+      });
   }
 
 }

@@ -112,7 +112,7 @@ export class Invite implements Action {
 export class InviteSuccess implements Action {
     readonly type = ActionTypes.INVITE_SUCCESS;
 
-    constructor(public payload: Project[]) { }
+    constructor(public payload: Project) { }
 }
 
 export class InviteFail implements Action {

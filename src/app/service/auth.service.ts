@@ -52,7 +52,8 @@ export class AuthService {
         }
         return {
           token: this.token,
-          user: res.json()[0]
+          user: res.json()[0],
+          userId: res.json()[0].id
         };
       });
   }
