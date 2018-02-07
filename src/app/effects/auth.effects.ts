@@ -16,9 +16,10 @@ export class AuthEffects {
     .map(toPayload)
     .switchMap(({ email, password }) => {
       return this.service$.login(email, password)
+        .map(auth => new actions.LoginSuccessAction(auth))
+        .catch(err => Observable.of(new actions.LoginFailAction(JSON.stringify(err))))
     })
-    .map(auth => new actions.LoginSuccessAction(auth))
-    .catch(err => Observable.of(new actions.LoginFailAction(JSON.stringify(err))))
+
   ;
 
   @Effect()

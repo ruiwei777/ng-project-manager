@@ -7,19 +7,25 @@ Login, Register, Create new projects, Invite members to projects, create task li
 ## Features
 1. MaterialUI, routing animations, theme switch
 2. Lazy loading and pre-loading for feature modules
-3. Latest version of ngrx with RxJS, time-travel devtools
+3. Latest version of Ngrx with RxJS, time-travel devtools
 4. Router guard
+5. Drag & drop driectives
 
 ## Development
-`ng serve --open`, then go to `localhost:4200/`.
-Data are served by a remote json-server. You can configure you data root in `src/environment/environment.ts`
+`npm install`
+
+`npm install -g json-server concurrently` (might need `sudo` depending on you npm path)
+
+`ng run dev`, default port: 4200
+
+Data are served by `json-server`. You can configure you data root in `src/environment/environment.ts`
 
 ## Build
-`npm run build`. It will generate all assets and an `index.html` inside the `dist` folder. Serve that `index.html` in you backend server (*not* the `index.html` in `src`). You can reference to the `server.js` file.
+`npm run build`. To run it locally after production build, `node server.js`
 
 ## File Structure
-1. Everything that should be instantiated only once (Service, Effects, Sidebar...) is in CoreModule
-2. Things imported everywhere are in SharedModule
+1. Everything that should be instantiated only once (Service, Effects, Sidebar...) is in `CoreModule`
+2. Things imported everywhere (`CommonModule`, `FormsModule`, pipes, directives, shared components...) are in `SharedModule`
 
 ## Running unit tests
 Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
@@ -27,22 +33,11 @@ Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.
 ## Running end-to-end tests
 Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
 
-## TODO
-* migrate service from Http to HttpClient
+# Recent Updates
+* migrated all service from Http to HttpClient
 
-auth-guard.service
+* finished drag&drop under /projects
 
-auth.service
 
-login-guard.service
 
-~~project.service~~
-
-quote.service
-
-~~task-list.service~~
-
-~~task.service~~
-
-user.service
 

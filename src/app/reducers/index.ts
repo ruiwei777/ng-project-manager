@@ -128,6 +128,11 @@ export const getTaskLists = createSelector(getTaskListState, fromTaskList.getSel
 export const getTasks = createSelector(getTaskState, fromTask.getTasks);
 export const getUsers = createSelector(getUserState, fromUser.getUsers);
 export const getUserEntities = createSelector(getUserState, fromUser.getEntities)
+// auth
+export const getUser = createSelector(getAuthState, fromAuth.getUser);
+export const getUserId = createSelector(getAuthState, fromAuth.getUserId);
+export const getToken = createSelector(getAuthState, fromAuth.getToken);
+
 export const getTasksWithOwners = createSelector(getTasks, getUserEntities, (tasks, userEntities) => {
   return tasks.map(task => {
     return {

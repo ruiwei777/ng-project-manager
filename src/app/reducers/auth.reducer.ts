@@ -1,8 +1,18 @@
 import * as actions from '../actions/auth.action';
-import { Auth } from '../domain';
+import { Auth, User } from '../domain';
+
+export interface State {
+    token: string;
+    user: User;
+    userId: string;
+}
 
 
-export const initialState: Auth = {};
+export const initialState: Auth = {
+    token: undefined,
+    user: null,
+    userId: undefined
+};
 
 export function reducer(state = initialState, action: actions.Actions): Auth {
     switch (action.type) {
@@ -24,3 +34,7 @@ export function reducer(state = initialState, action: actions.Actions): Auth {
         }
     }
 }
+
+export const getUserId = (auth: Auth) => auth.userId;
+export const getUser = (auth: Auth) => auth.user;
+export const getToken = (auth: Auth) => auth.token;
