@@ -2,5 +2,5 @@ export const environment = {
   production: true,
   hmr: false,
   publicPath: '',
-  dataPath: '//safeatnight.tk:3000',
+  dataPath: '//13.58.188.38:3000',
 };
